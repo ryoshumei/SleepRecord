@@ -3,14 +3,15 @@ import SwiftData
 
 @Model
 final class SleepSession {
-    @Attribute(.unique) var id: UUID
-    var bedInAt: Date
+    // CloudKit requires all non-optional attributes to have defaults, and does not allow .unique constraints.
+    var id: UUID = UUID()
+    var bedInAt: Date = Date.distantPast
     var bedOutAt: Date?
     var asleepAt: Date?
     var awakeAt: Date?
-    var notes: String
-    var createdAt: Date
-    var updatedAt: Date
+    var notes: String = ""
+    var createdAt: Date = Date.distantPast
+    var updatedAt: Date = Date.distantPast
 
     init(
         id: UUID = UUID(),
