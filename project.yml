@@ -2,7 +2,7 @@ name: SleepRecord
 options:
   bundleIdPrefix: com.ryan.sleeprecord
   deploymentTarget:
-    iOS: '17.0'
+    iOS: '26.4'
   developmentLanguage: ja
 settings:
   base:
