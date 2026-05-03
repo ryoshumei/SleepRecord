@@ -21,3 +21,5 @@ Pods/
 # Carthage
 Carthage/Build/
 .gstack/
+build/
+DerivedData/

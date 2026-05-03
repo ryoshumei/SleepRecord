@@ -1,0 +1,549 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */; };
+		04C4993B140197385256963B /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */; };
+		07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */; };
+		0D4740D365E70B8A07FF9227 /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2C03EA2A11EBDCA920329 /* DateRange.swift */; };
+		32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */; };
+		3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */; };
+		49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */; };
+		6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */; };
+		763C8F344DCEB7BBC44BC7EC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AC78B000DC1EB63589712 /* DataStore.swift */; };
+		7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */; };
+		8C8F14F325D98BFF60833120 /* PDFExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67521FA096773EE9254C2399 /* PDFExportView.swift */; };
+		8DC93CB971DD0EBC01384322 /* BackfillDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */; };
+		99DD3C2BB79D1A0858447F36 /* SleepStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */; };
+		A4B6D061A68F549B93FD02AA /* ChartCellCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */; };
+		AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */; };
+		C29A094DE47D438E0F1DF212 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F59330D9E1C7785FC0E823 /* ChartView.swift */; };
+		CBA301F556116889AF1EB9F2 /* PDFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116298A7F7BEF7CB3E8736A5 /* PDFPreviewView.swift */; };
+		E134042E55B74CEA7BE415F3 /* DayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAD35CBE6DC26544F42A972 /* DayRowView.swift */; };
+		E3EA61748116521467DAADC5 /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05162CE0B8F25A1FA3F77F94 /* SleepSession.swift */; };
+		E7FD266B8B6A1937B563A219 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E286A6C47ABF2D3AEFBCD /* HomeView.swift */; };
+		EBA4FE15BD1BF992F105B0DD /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933EF3115902D0D3484B1275 /* PDFExporter.swift */; };
+		EF4254C8283D584A45A0845D /* MorningCorrectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		37E9400A872C9D33FA796E8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 662DE9BFC003D1E241E70AD8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBFBCFFA18C467F2808EC14C;
+			remoteInfo = SleepRecord;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05162CE0B8F25A1FA3F77F94 /* SleepSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepSession.swift; sourceTree = "<group>"; };
+		116298A7F7BEF7CB3E8736A5 /* PDFPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPreviewView.swift; sourceTree = "<group>"; };
+		140AC78B000DC1EB63589712 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		15F59330D9E1C7785FC0E823 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationScheduler.swift; sourceTree = "<group>"; };
+		1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfillDetectorTests.swift; sourceTree = "<group>"; };
+		294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculator.swift; sourceTree = "<group>"; };
+		29A730B96846BB43E168E23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculatorTests.swift; sourceTree = "<group>"; };
+		4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachineTests.swift; sourceTree = "<group>"; };
+		54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
+		67521FA096773EE9254C2399 /* PDFExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportView.swift; sourceTree = "<group>"; };
+		6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachine.swift; sourceTree = "<group>"; };
+		7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLayoutBuilderTests.swift; sourceTree = "<group>"; };
+		819E286A6C47ABF2D3AEFBCD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		933EF3115902D0D3484B1275 /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
+		93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordApp.swift; sourceTree = "<group>"; };
+		AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningCorrectionSheet.swift; sourceTree = "<group>"; };
+		ACAD35CBE6DC26544F42A972 /* DayRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRowView.swift; sourceTree = "<group>"; };
+		AE9C5764F124623D827FE9F3 /* SleepRecord.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SleepRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDE2C03EA2A11EBDCA920329 /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
+		CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEditSheet.swift; sourceTree = "<group>"; };
+		D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfillDetector.swift; sourceTree = "<group>"; };
+		DB6A6306A80903F5D605C49B /* SleepRecord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepRecord.entitlements; sourceTree = "<group>"; };
+		F3BCF1CB85FC335705690C34 /* SleepRecordTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepRecordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		06EA22EA8A72505B6A18FF7C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				819E286A6C47ABF2D3AEFBCD /* HomeView.swift */,
+				AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		14078FDEE9AC5C595F2F22F9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		1614459CA8023B03149AC498 /* SleepRecordTests */ = {
+			isa = PBXGroup;
+			children = (
+				1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */,
+				496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */,
+				7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */,
+				4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */,
+			);
+			path = SleepRecordTests;
+			sourceTree = "<group>";
+		};
+		3817BFB0AFAE55E9F867E821 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */,
+				294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */,
+				140AC78B000DC1EB63589712 /* DataStore.swift */,
+				17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */,
+				933EF3115902D0D3484B1275 /* PDFExporter.swift */,
+				6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		49AF1BAFBEC23A83357E81A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4A0D65E252C1A11101F1B49 /* Chart */,
+				06EA22EA8A72505B6A18FF7C /* Home */,
+				8A6BD702D4D539485724F538 /* PDF */,
+				14078FDEE9AC5C595F2F22F9 /* Settings */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		681127593F5F03BC0C58ECA7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BDE2C03EA2A11EBDCA920329 /* DateRange.swift */,
+				54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		85864D9AB020D2935F606177 /* SleepRecord */ = {
+			isa = PBXGroup;
+			children = (
+				29A730B96846BB43E168E23C /* Info.plist */,
+				DB6A6306A80903F5D605C49B /* SleepRecord.entitlements */,
+				A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */,
+				B3507E0D81439FA888E3653F /* Models */,
+				3817BFB0AFAE55E9F867E821 /* Services */,
+				681127593F5F03BC0C58ECA7 /* Utilities */,
+				49AF1BAFBEC23A83357E81A4 /* Views */,
+			);
+			path = SleepRecord;
+			sourceTree = "<group>";
+		};
+		8A6BD702D4D539485724F538 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				67521FA096773EE9254C2399 /* PDFExportView.swift */,
+				116298A7F7BEF7CB3E8736A5 /* PDFPreviewView.swift */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		9C8F684C527AF6C71734FF2D = {
+			isa = PBXGroup;
+			children = (
+				85864D9AB020D2935F606177 /* SleepRecord */,
+				1614459CA8023B03149AC498 /* SleepRecordTests */,
+				DA7D12351B99A1651C8A8C08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B3507E0D81439FA888E3653F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				05162CE0B8F25A1FA3F77F94 /* SleepSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D4A0D65E252C1A11101F1B49 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				15F59330D9E1C7785FC0E823 /* ChartView.swift */,
+				CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */,
+				ACAD35CBE6DC26544F42A972 /* DayRowView.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		DA7D12351B99A1651C8A8C08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE9C5764F124623D827FE9F3 /* SleepRecord.app */,
+				F3BCF1CB85FC335705690C34 /* SleepRecordTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BBFBCFFA18C467F2808EC14C /* SleepRecord */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 605B261B76887D5141960A4B /* Build configuration list for PBXNativeTarget "SleepRecord" */;
+			buildPhases = (
+				FE86C5F7A15F3DA8FDD55263 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SleepRecord;
+			packageProductDependencies = (
+			);
+			productName = SleepRecord;
+			productReference = AE9C5764F124623D827FE9F3 /* SleepRecord.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF5BE7CE8B50F2388D0F86F1 /* SleepRecordTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 210EE5D63C10F36FCF091E79 /* Build configuration list for PBXNativeTarget "SleepRecordTests" */;
+			buildPhases = (
+				6840B96073D0041F7D1070A0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				216396763EC2BB0F58E0D8F9 /* PBXTargetDependency */,
+			);
+			name = SleepRecordTests;
+			packageProductDependencies = (
+			);
+			productName = SleepRecordTests;
+			productReference = F3BCF1CB85FC335705690C34 /* SleepRecordTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		662DE9BFC003D1E241E70AD8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					BBFBCFFA18C467F2808EC14C = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					FF5BE7CE8B50F2388D0F86F1 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 8027E912A6ED6590E98EB6D2 /* Build configuration list for PBXProject "SleepRecord" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ja;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				ja,
+			);
+			mainGroup = 9C8F684C527AF6C71734FF2D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BBFBCFFA18C467F2808EC14C /* SleepRecord */,
+				FF5BE7CE8B50F2388D0F86F1 /* SleepRecordTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6840B96073D0041F7D1070A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */,
+				07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */,
+				03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */,
+				32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE86C5F7A15F3DA8FDD55263 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC93CB971DD0EBC01384322 /* BackfillDetector.swift in Sources */,
+				A4B6D061A68F549B93FD02AA /* ChartCellCalculator.swift in Sources */,
+				C29A094DE47D438E0F1DF212 /* ChartView.swift in Sources */,
+				763C8F344DCEB7BBC44BC7EC /* DataStore.swift in Sources */,
+				0D4740D365E70B8A07FF9227 /* DateRange.swift in Sources */,
+				7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */,
+				E134042E55B74CEA7BE415F3 /* DayRowView.swift in Sources */,
+				E7FD266B8B6A1937B563A219 /* HomeView.swift in Sources */,
+				EF4254C8283D584A45A0845D /* MorningCorrectionSheet.swift in Sources */,
+				49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */,
+				8C8F14F325D98BFF60833120 /* PDFExportView.swift in Sources */,
+				EBA4FE15BD1BF992F105B0DD /* PDFExporter.swift in Sources */,
+				CBA301F556116889AF1EB9F2 /* PDFPreviewView.swift in Sources */,
+				3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */,
+				6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */,
+				E3EA61748116521467DAADC5 /* SleepSession.swift in Sources */,
+				99DD3C2BB79D1A0858447F36 /* SleepStateMachine.swift in Sources */,
+				04C4993B140197385256963B /* TimeFormatter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		216396763EC2BB0F58E0D8F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBFBCFFA18C467F2808EC14C /* SleepRecord */;
+			targetProxy = 37E9400A872C9D33FA796E8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		02F09C5B32CA63F8D8B9D4C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = SleepRecord/SleepRecord.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SleepRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.sleeprecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1EAA27782F12BF26F25D6E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SleepRecord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2EFC5AE37CF803EE464137CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepRecord.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SleepRecord";
+			};
+			name = Release;
+		};
+		73FE9ED4E30FCE7543F27072 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SleepRecord/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		ADF29CA9A17AA5C8B54B977F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SleepRecord.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SleepRecord";
+			};
+			name = Debug;
+		};
+		D52BD2C1D7182F1302E4006E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = SleepRecord/SleepRecord.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = SleepRecord/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.sleeprecord;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		210EE5D63C10F36FCF091E79 /* Build configuration list for PBXNativeTarget "SleepRecordTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ADF29CA9A17AA5C8B54B977F /* Debug */,
+				2EFC5AE37CF803EE464137CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		605B261B76887D5141960A4B /* Build configuration list for PBXNativeTarget "SleepRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EAA27782F12BF26F25D6E3B /* Debug */,
+				73FE9ED4E30FCE7543F27072 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8027E912A6ED6590E98EB6D2 /* Build configuration list for PBXProject "SleepRecord" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D52BD2C1D7182F1302E4006E /* Debug */,
+				02F09C5B32CA63F8D8B9D4C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 662DE9BFC003D1E241E70AD8 /* Project object */;
+}
