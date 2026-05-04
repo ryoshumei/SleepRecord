@@ -9,6 +9,8 @@ struct SettingsView: View {
 
     @State private var notificationStatus: UNAuthorizationStatus = .notDetermined
     @State private var iCloudAvailable: Bool = FileManager.default.ubiquityIdentityToken != nil
+    @State private var languagePref = LanguagePreference.shared
+    @State private var showLanguageRestartAlert = false
 
     var body: some View {
         NavigationStack {
@@ -52,9 +54,28 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("言語 / Language") {
+                    Picker("言語 / Language", selection: $languagePref.selected) {
+                        Text("System (システム)").tag(LanguageOption.system)
+                        Text("日本語").tag(LanguageOption.japanese)
+                        Text("English").tag(LanguageOption.english)
+                    }
+                    .onChange(of: languagePref.selected) { _, _ in
+                        showLanguageRestartAlert = true
+                    }
+                }
+
                 Section("このアプリについて") {
                     HStack { Text("バージョン"); Spacer(); Text("1.0.0").foregroundStyle(.secondary) }
                 }
+            }
+            .alert(
+                "再起動が必要 / Restart Required",
+                isPresented: $showLanguageRestartAlert
+            ) {
+                Button("OK") { }
+            } message: {
+                Text("言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change")
             }
             .navigationTitle("設定")
             .toolbar {
