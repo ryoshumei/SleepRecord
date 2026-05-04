@@ -104,28 +104,53 @@ enum PDFExporter {
         calc: ChartCellCalculator,
         calendar: Calendar
     ) {
-        let chartTop: CGFloat = pageMargin + 60
+        let bannerHeight: CGFloat = 14
+        let hourLabelHeight: CGFloat = 10
+        let chartTop: CGFloat = pageMargin + 60 + bannerHeight + hourLabelHeight
         let chartLeft = pageMargin + labelWidth
-        let notesLeft = chartLeft + 24 * cellWidth + 8
+        let notesLeft = chartLeft + 24 * cellWidth + 4
 
-        // Hour header
-        let hourFont = UIFont.systemFont(ofSize: 7)
-        for h in 0..<24 {
-            let str = "\(h)" as NSString
-            str.draw(
-                at: CGPoint(x: chartLeft + CGFloat(h) * cellWidth + 1, y: chartTop - 12),
-                withAttributes: [.font: hourFont, .foregroundColor: UIColor.darkGray]
-            )
-        }
-        // 備考 column header
-        let columnHeaderAttrs: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 8),
-            .foregroundColor: UIColor.darkGray
+        // 午前 / 午後 banner row
+        let bannerAttrs: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 9),
+            .foregroundColor: UIColor.black,
+            .paragraphStyle: centeredParagraphStyle()
         ]
-        ("備考" as NSString).draw(
-            at: CGPoint(x: notesLeft, y: chartTop - 12),
-            withAttributes: columnHeaderAttrs
-        )
+        let amRect = CGRect(x: chartLeft, y: chartTop - bannerHeight - hourLabelHeight,
+                            width: 12 * cellWidth, height: bannerHeight)
+        let pmRect = CGRect(x: chartLeft + 12 * cellWidth, y: chartTop - bannerHeight - hourLabelHeight,
+                            width: 12 * cellWidth, height: bannerHeight)
+        let notesBannerRect = CGRect(x: notesLeft, y: chartTop - bannerHeight - hourLabelHeight,
+                                     width: notesColumnWidth, height: bannerHeight)
+        UIColor(white: 0.92, alpha: 1).setFill()
+        UIBezierPath(rect: amRect).fill()
+        UIBezierPath(rect: pmRect).fill()
+        UIBezierPath(rect: notesBannerRect).fill()
+        UIColor.black.setStroke()
+        for r in [amRect, pmRect, notesBannerRect] {
+            let p = UIBezierPath(rect: r); p.lineWidth = 0.5; p.stroke()
+        }
+        ("午前" as NSString).draw(in: amRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+        ("午後" as NSString).draw(in: pmRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+        ("備考欄" as NSString).draw(in: notesBannerRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+
+        // Hour numbers row: 0-11 / 0-11
+        let hourFont = UIFont.systemFont(ofSize: 7)
+        let hourAttrs: [NSAttributedString.Key: Any] = [
+            .font: hourFont,
+            .foregroundColor: UIColor.darkGray,
+            .paragraphStyle: centeredParagraphStyle()
+        ]
+        for h in 0..<12 {
+            let amRect = CGRect(x: chartLeft + CGFloat(h) * cellWidth,
+                                y: chartTop - hourLabelHeight,
+                                width: cellWidth, height: hourLabelHeight)
+            let pmRect = CGRect(x: chartLeft + CGFloat(h + 12) * cellWidth,
+                                y: chartTop - hourLabelHeight,
+                                width: cellWidth, height: hourLabelHeight)
+            ("\(h)" as NSString).draw(in: amRect, withAttributes: hourAttrs)
+            ("\(h)" as NSString).draw(in: pmRect, withAttributes: hourAttrs)
+        }
 
         let formatter = DateFormatter()
         formatter.calendar = calendar
@@ -173,6 +198,20 @@ enum PDFExporter {
         UIColor.black.setStroke()
         separator.lineWidth = 1.5
         separator.stroke()
+
+        // Border around the notes column body
+        let notesBodyRect = CGRect(x: notesLeft, y: chartTop,
+                                    width: notesColumnWidth,
+                                    height: CGFloat(days.count) * cellHeight)
+        let notesBorder = UIBezierPath(rect: notesBodyRect)
+        notesBorder.lineWidth = 0.5
+        notesBorder.stroke()
+    }
+
+    private static func centeredParagraphStyle() -> NSParagraphStyle {
+        let p = NSMutableParagraphStyle()
+        p.alignment = .center
+        return p
     }
 
     private static func drawCell(rect: CGRect, cell: ChartCell) {

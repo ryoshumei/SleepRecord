@@ -3,27 +3,41 @@ import SwiftUI
 struct DayRowView: View {
     let date: Date
     let cells: [ChartCell]
+    let notes: String
+    let dateLabelWidth: CGFloat
+    let notesWidth: CGFloat
+    let rowHeight: CGFloat
 
     var body: some View {
         HStack(spacing: 0) {
             Text(date, formatter: TimeFormatter.dateLabel)
                 .font(.caption2)
-                .frame(width: 56, alignment: .trailing)
+                .frame(width: dateLabelWidth, alignment: .trailing)
                 .padding(.trailing, 4)
+
             GeometryReader { geo in
                 let w = geo.size.width / 24
                 ZStack(alignment: .topLeading) {
                     HStack(spacing: 0) {
                         ForEach(0..<24, id: \.self) { h in
                             CellView(cell: cells[h])
-                                .frame(width: w, height: 28)
+                                .frame(width: w, height: rowHeight)
                         }
                     }
-                    Rectangle().fill(.black).frame(width: 1.5)
-                        .offset(x: w * 12, y: 0).frame(height: 28)
+                    Rectangle().fill(.black)
+                        .frame(width: 1.5, height: rowHeight)
+                        .offset(x: w * 12)
                 }
             }
-            .frame(height: 28)
+            .frame(height: rowHeight)
+
+            Text(notes)
+                .font(.system(size: 9))
+                .foregroundStyle(notes.isEmpty ? .clear : .primary)
+                .frame(width: notesWidth, height: rowHeight, alignment: .topLeading)
+                .padding(.leading, 4)
+                .lineLimit(2)
+                .truncationMode(.tail)
         }
     }
 }

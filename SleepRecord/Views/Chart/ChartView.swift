@@ -10,6 +10,61 @@ struct ChartView: View {
     @State private var showPDFExport = false
 
     private let calendar = Calendar.current
+    private let dateLabelWidth: CGFloat = 48
+    private let notesWidth: CGFloat = 80
+
+    private var chartHeader: some View {
+        VStack(spacing: 0) {
+            // 午前 / 午後 banner
+            HStack(spacing: 0) {
+                Color.clear.frame(width: dateLabelWidth + 4)
+                GeometryReader { geo in
+                    HStack(spacing: 0) {
+                        Text("午前")
+                            .font(.system(size: 11, weight: .semibold))
+                            .frame(width: geo.size.width / 2, height: 16)
+                            .background(Color(white: 0.92))
+                            .overlay(Rectangle().stroke(Color.black, lineWidth: 0.5))
+                        Text("午後")
+                            .font(.system(size: 11, weight: .semibold))
+                            .frame(width: geo.size.width / 2, height: 16)
+                            .background(Color(white: 0.92))
+                            .overlay(Rectangle().stroke(Color.black, lineWidth: 0.5))
+                    }
+                }
+                .frame(height: 16)
+                Text("備考欄")
+                    .font(.system(size: 10, weight: .semibold))
+                    .frame(width: notesWidth, height: 16)
+                    .padding(.leading, 4)
+                    .background(Color(white: 0.92))
+                    .overlay(Rectangle().stroke(Color.black, lineWidth: 0.5))
+            }
+            // Hour numbers: 0-11 / 0-11
+            HStack(spacing: 0) {
+                Color.clear.frame(width: dateLabelWidth + 4)
+                GeometryReader { geo in
+                    let w = geo.size.width / 24
+                    HStack(spacing: 0) {
+                        ForEach(0..<12, id: \.self) { h in
+                            Text("\(h)")
+                                .font(.system(size: 8))
+                                .foregroundStyle(.secondary)
+                                .frame(width: w, alignment: .center)
+                        }
+                        ForEach(0..<12, id: \.self) { h in
+                            Text("\(h)")
+                                .font(.system(size: 8))
+                                .foregroundStyle(.secondary)
+                                .frame(width: w, alignment: .center)
+                        }
+                    }
+                }
+                .frame(height: 12)
+                Color.clear.frame(width: notesWidth)
+            }
+        }
+    }
 
     var monthDays: [Date] {
         let start = displayedMonth
@@ -28,46 +83,23 @@ struct ChartView: View {
                 ScrollViewReader { proxy in
                     ScrollView {
                         let calc = ChartCellCalculator()
-                        LazyVStack(spacing: 2) {
-                            HStack(spacing: 0) {
-                                Color.clear.frame(width: 56)
-                                GeometryReader { geo in
-                                    let w = geo.size.width / 24
-                                    HStack(spacing: 0) {
-                                        ForEach(0..<24, id: \.self) { h in
-                                            Text("\(h)")
-                                                .font(.system(size: 8))
-                                                .foregroundStyle(.secondary)
-                                                .frame(width: w, alignment: .leading)
-                                        }
-                                    }
-                                }.frame(height: 12)
-                            }
-                            .padding(.horizontal, 8)
-                            .padding(.top, 4)
+                        LazyVStack(spacing: 0) {
+                            chartHeader
+                                .padding(.horizontal, 8)
+                                .padding(.top, 4)
 
                             ForEach(monthDays, id: \.self) { day in
                                 Button {
                                     selectedDay = day
                                 } label: {
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        DayRowView(date: day, cells: calc.cells(forDay: day, sessions: sessions))
-                                        let dayNotes = calc.notes(forDay: day, sessions: sessions)
-                                        if !dayNotes.isEmpty {
-                                            HStack(alignment: .top, spacing: 4) {
-                                                Image(systemName: "note.text")
-                                                    .font(.system(size: 9))
-                                                    .foregroundStyle(.secondary)
-                                                Text(dayNotes)
-                                                    .font(.caption2)
-                                                    .foregroundStyle(.secondary)
-                                                    .multilineTextAlignment(.leading)
-                                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                            }
-                                            .padding(.leading, 60)
-                                            .padding(.bottom, 2)
-                                        }
-                                    }
+                                    DayRowView(
+                                        date: day,
+                                        cells: calc.cells(forDay: day, sessions: sessions),
+                                        notes: calc.notes(forDay: day, sessions: sessions),
+                                        dateLabelWidth: dateLabelWidth,
+                                        notesWidth: notesWidth,
+                                        rowHeight: 24
+                                    )
                                     .padding(.horizontal, 8)
                                 }
                                 .buttonStyle(.plain)
