@@ -22,11 +22,13 @@
 		7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */; };
 		8C8F14F325D98BFF60833120 /* PDFExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67521FA096773EE9254C2399 /* PDFExportView.swift */; };
 		8DC93CB971DD0EBC01384322 /* BackfillDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */; };
+		8E1D6708509DD04C6E3BDE17 /* LanguagePreferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */; };
 		99DD3C2BB79D1A0858447F36 /* SleepStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */; };
 		A4B6D061A68F549B93FD02AA /* ChartCellCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */; };
 		AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */; };
 		C29A094DE47D438E0F1DF212 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F59330D9E1C7785FC0E823 /* ChartView.swift */; };
 		C9572F47B8E6780F84E00373 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 31D9537D70160A85EB8CB47C /* InfoPlist.xcstrings */; };
+		CAB6CEDFAF741FC99824E2A7 /* LanguagePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C79F8D2D473855F83EFDD /* LanguagePreference.swift */; };
 		CBA301F556116889AF1EB9F2 /* PDFPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 116298A7F7BEF7CB3E8736A5 /* PDFPreviewView.swift */; };
 		E134042E55B74CEA7BE415F3 /* DayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAD35CBE6DC26544F42A972 /* DayRowView.swift */; };
 		E3EA61748116521467DAADC5 /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05162CE0B8F25A1FA3F77F94 /* SleepSession.swift */; };
@@ -58,6 +60,8 @@
 		31D9537D70160A85EB8CB47C /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculatorTests.swift; sourceTree = "<group>"; };
 		4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachineTests.swift; sourceTree = "<group>"; };
+		4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePreferenceTests.swift; sourceTree = "<group>"; };
+		534C79F8D2D473855F83EFDD /* LanguagePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePreference.swift; sourceTree = "<group>"; };
 		54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
 		67521FA096773EE9254C2399 /* PDFExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportView.swift; sourceTree = "<group>"; };
 		6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachine.swift; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 			children = (
 				1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */,
 				496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */,
+				4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */,
 				7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */,
 				E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */,
 				4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */,
@@ -116,6 +121,7 @@
 				D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */,
 				294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */,
 				140AC78B000DC1EB63589712 /* DataStore.swift */,
+				534C79F8D2D473855F83EFDD /* LanguagePreference.swift */,
 				17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */,
 				933EF3115902D0D3484B1275 /* PDFExporter.swift */,
 				873C825485B7016281FC1955 /* SleepRecordValidator.swift */,
@@ -305,6 +311,7 @@
 			files = (
 				AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */,
 				07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */,
+				8E1D6708509DD04C6E3BDE17 /* LanguagePreferenceTests.swift in Sources */,
 				03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */,
 				5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */,
 				32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */,
@@ -323,6 +330,7 @@
 				7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */,
 				E134042E55B74CEA7BE415F3 /* DayRowView.swift in Sources */,
 				E7FD266B8B6A1937B563A219 /* HomeView.swift in Sources */,
+				CAB6CEDFAF741FC99824E2A7 /* LanguagePreference.swift in Sources */,
 				EF4254C8283D584A45A0845D /* MorningCorrectionSheet.swift in Sources */,
 				49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */,
 				8C8F14F325D98BFF60833120 /* PDFExportView.swift in Sources */,
