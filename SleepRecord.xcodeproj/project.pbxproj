@@ -14,6 +14,8 @@
 		32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */; };
 		3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */; };
 		49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */; };
+		4F3E270ED804AD51F47F1733 /* SleepRecordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873C825485B7016281FC1955 /* SleepRecordValidator.swift */; };
+		5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */; };
 		6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */; };
 		763C8F344DCEB7BBC44BC7EC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AC78B000DC1EB63589712 /* DataStore.swift */; };
 		7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */; };
@@ -57,6 +59,7 @@
 		6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachine.swift; sourceTree = "<group>"; };
 		7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLayoutBuilderTests.swift; sourceTree = "<group>"; };
 		819E286A6C47ABF2D3AEFBCD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		873C825485B7016281FC1955 /* SleepRecordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordValidator.swift; sourceTree = "<group>"; };
 		933EF3115902D0D3484B1275 /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
 		93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordApp.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEditSheet.swift; sourceTree = "<group>"; };
 		D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfillDetector.swift; sourceTree = "<group>"; };
 		DB6A6306A80903F5D605C49B /* SleepRecord.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SleepRecord.entitlements; sourceTree = "<group>"; };
+		E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordValidatorTests.swift; sourceTree = "<group>"; };
 		F3BCF1CB85FC335705690C34 /* SleepRecordTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SleepRecordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -94,6 +98,7 @@
 				1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */,
 				496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */,
 				7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */,
+				E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */,
 				4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */,
 			);
 			path = SleepRecordTests;
@@ -107,6 +112,7 @@
 				140AC78B000DC1EB63589712 /* DataStore.swift */,
 				17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */,
 				933EF3115902D0D3484B1275 /* PDFExporter.swift */,
+				873C825485B7016281FC1955 /* SleepRecordValidator.swift */,
 				6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */,
 			);
 			path = Services;
@@ -276,6 +282,7 @@
 				AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */,
 				07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */,
 				03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */,
+				5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */,
 				32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +306,7 @@
 				CBA301F556116889AF1EB9F2 /* PDFPreviewView.swift in Sources */,
 				3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */,
 				6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */,
+				4F3E270ED804AD51F47F1733 /* SleepRecordValidator.swift in Sources */,
 				E3EA61748116521467DAADC5 /* SleepSession.swift in Sources */,
 				99DD3C2BB79D1A0858447F36 /* SleepStateMachine.swift in Sources */,
 				04C4993B140197385256963B /* TimeFormatter.swift in Sources */,

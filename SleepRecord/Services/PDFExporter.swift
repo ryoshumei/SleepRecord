@@ -10,7 +10,7 @@ enum PDFExporter {
     static let labelWidth: CGFloat = 56
     static let pageMargin: CGFloat = 36
 
-    static func pages(totalDays: Int) -> Int {
+    nonisolated static func pages(totalDays: Int) -> Int {
         max(1, Int(ceil(Double(totalDays) / Double(daysPerPage))))
     }
 
