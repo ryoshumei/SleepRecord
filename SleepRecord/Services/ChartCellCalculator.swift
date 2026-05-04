@@ -31,9 +31,17 @@ struct ChartCellCalculator {
         var cells = Array(repeating: ChartCell.empty, count: 24)
 
         for session in sessions {
-            let bedRange = session.bedInAt..<(session.bedOutAt ?? dayEnd)
+            // Build ranges defensively. Swift crashes on Range where upper < lower,
+            // which can happen if (a) the session's bed/sleep window doesn't include
+            // this day at all (bedInAt > dayEnd), or (b) user data is out of order
+            // (e.g., correction sheet defaults make asleepAt > awakeAt for very short
+            // sessions). Skip such ranges instead of crashing.
+            let bedEnd = session.bedOutAt ?? dayEnd
+            guard session.bedInAt < bedEnd else { continue }
+            let bedRange = session.bedInAt..<bedEnd
+
             let sleepRange: Range<Date>? = {
-                guard let s = session.asleepAt, let e = session.awakeAt else { return nil }
+                guard let s = session.asleepAt, let e = session.awakeAt, s < e else { return nil }
                 return s..<e
             }()
 

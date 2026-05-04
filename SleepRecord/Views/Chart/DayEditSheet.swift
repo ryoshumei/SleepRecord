@@ -56,8 +56,9 @@ struct DayEditSheet: View {
         guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else { return }
 
         let match = allSessions.first { s in
-            let bedRange = s.bedInAt..<(s.bedOutAt ?? dayEnd)
-            return bedRange.lowerBound < dayEnd && bedRange.upperBound > dayStart
+            let bedEnd = s.bedOutAt ?? dayEnd
+            guard s.bedInAt < bedEnd else { return false }
+            return s.bedInAt < dayEnd && bedEnd > dayStart
         }
         existing = match
 

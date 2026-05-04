@@ -82,4 +82,39 @@ final class ChartCellCalculatorTests: XCTestCase {
         let day2 = calc.cells(forDay: date(2026, 5, 5, 0), sessions: [s])
         XCTAssertTrue(day2[0].inBed)
     }
+
+    func testSessionAfterDay_NoCrash() {
+        // Session is for 5/5; render 5/3. bedInAt > dayEnd would crash naive Range.
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 5, 23),
+            bedOutAt: date(2026, 5, 6, 7)
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let cells = calc.cells(forDay: date(2026, 5, 3, 0), sessions: [s])
+        XCTAssertEqual(cells.count, 24)
+        XCTAssertTrue(cells.allSatisfy { !$0.inBed && !$0.asleep })
+    }
+
+    func testInProgressSessionFromFuture_NoCrash() {
+        // bedInAt is in the future relative to the rendered day (no bedOutAt).
+        let s = SleepSession(bedInAt: date(2026, 5, 6, 23, 30))
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let cells = calc.cells(forDay: date(2026, 5, 4, 0), sessions: [s])
+        XCTAssertTrue(cells.allSatisfy { !$0.inBed && !$0.asleep })
+    }
+
+    func testInvertedSleepRange_IgnoredNoCrash() {
+        // asleepAt > awakeAt (e.g., user accidentally inverted slider). Should not crash.
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 4, 23),
+            bedOutAt: date(2026, 5, 5, 7),
+            asleepAt: date(2026, 5, 5, 6, 30),
+            awakeAt: date(2026, 5, 5, 0, 30)
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let cells = calc.cells(forDay: date(2026, 5, 4, 0), sessions: [s])
+        // Bed range is valid → 23 cell should be in bed; sleep is invalid → no asleep marking.
+        XCTAssertTrue(cells[23].inBed)
+        XCTAssertFalse(cells[23].asleep)
+    }
 }
