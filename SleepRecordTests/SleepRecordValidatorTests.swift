@@ -150,19 +150,23 @@ final class SleepRecordValidatorTests: XCTestCase {
 
     // MARK: messages
 
-    func testMessage_BedWindowInverted_HasJapaneseText() {
+    func testMessage_BedWindowInverted_NonEmpty() {
         let m = SleepRecordValidator.Issue.bedWindowInverted.message()
-        XCTAssertTrue(m.contains("布団"))
+        XCTAssertFalse(m.isEmpty)
     }
 
     func testMessage_AsleepBeforeBedIn_IncludesTimeWhenProvided() {
         let bedIn = dt(2026, 5, 4, 23, 0)
         let m = SleepRecordValidator.Issue.asleepBeforeBedIn.message(bedInAt: bedIn)
-        XCTAssertTrue(m.contains("入床") || m.contains("眠"))
+        let timeStr = SleepRecordValidator.shortTime(bedIn)
+        XCTAssertTrue(
+            m.contains(timeStr),
+            "message should include the bedInAt time '\(timeStr)' but was '\(m)'"
+        )
     }
 
-    func testMessage_AsleepAfterAwake_DescribesProblem() {
+    func testMessage_AsleepAfterAwake_NonEmpty() {
         let m = SleepRecordValidator.Issue.asleepAfterAwake.message()
-        XCTAssertTrue(m.contains("眠") && m.contains("目覚め") || m.contains("覚醒"))
+        XCTAssertFalse(m.isEmpty)
     }
 }

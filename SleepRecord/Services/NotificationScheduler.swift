@@ -26,8 +26,14 @@ struct NotificationScheduler {
         center.removePendingNotificationRequests(withIdentifiers: [bedtimeReminderID])
 
         let content = UNMutableNotificationContent()
-        content.title = "そろそろお休みの時間です"
-        content.body = "おやすみ前にタップを忘れずに 🌙"
+        content.title = String(
+            localized: "notification.bedtimeReminder.title",
+            defaultValue: "そろそろお休みの時間です"
+        )
+        content.body = String(
+            localized: "notification.bedtimeReminder.body",
+            defaultValue: "おやすみ前にタップを忘れずに 🌙"
+        )
         content.sound = .default
 
         var components = DateComponents()

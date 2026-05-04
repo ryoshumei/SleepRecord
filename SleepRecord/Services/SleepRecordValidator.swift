@@ -46,23 +46,45 @@ enum SleepRecordValidator {
 }
 
 extension SleepRecordValidator.Issue {
-    /// Display message in Japanese for the given issue (used in form error labels).
+    /// Display message for the given issue, used in form error labels.
+    /// Looks up the localized string at runtime; defaultValue is the Japanese
+    /// development-language source.
     func message(bedInAt: Date? = nil, bedOutAt: Date? = nil) -> String {
         switch self {
         case .bedWindowInverted:
-            return "「布団に入った」は「布団から出た」より前である必要があります"
+            return String(
+                localized: "validator.bedWindowInverted",
+                defaultValue: "「布団に入った」は「布団から出た」より前である必要があります"
+            )
         case .asleepBeforeBedIn:
             if let d = bedInAt {
-                return "入眠時刻は入床時刻（\(SleepRecordValidator.shortTime(d))）以降にしてください"
+                let time = SleepRecordValidator.shortTime(d)
+                return String(
+                    localized: "validator.asleepBeforeBedIn.withTime",
+                    defaultValue: "入眠時刻は入床時刻（\(time)）以降にしてください"
+                )
             }
-            return "「眠った」は「布団に入った」以降である必要があります"
+            return String(
+                localized: "validator.asleepBeforeBedIn",
+                defaultValue: "「眠った」は「布団に入った」以降である必要があります"
+            )
         case .awakeAfterBedOut:
             if let d = bedOutAt {
-                return "覚醒時刻は起床時刻（\(SleepRecordValidator.shortTime(d))）以前にしてください"
+                let time = SleepRecordValidator.shortTime(d)
+                return String(
+                    localized: "validator.awakeAfterBedOut.withTime",
+                    defaultValue: "覚醒時刻は起床時刻（\(time)）以前にしてください"
+                )
             }
-            return "「目覚めた」は「布団から出た」以前である必要があります"
+            return String(
+                localized: "validator.awakeAfterBedOut",
+                defaultValue: "「目覚めた」は「布団から出た」以前である必要があります"
+            )
         case .asleepAfterAwake:
-            return "「眠った」は「目覚めた」より前である必要があります"
+            return String(
+                localized: "validator.asleepAfterAwake",
+                defaultValue: "「眠った」は「目覚めた」より前である必要があります"
+            )
         }
     }
 }

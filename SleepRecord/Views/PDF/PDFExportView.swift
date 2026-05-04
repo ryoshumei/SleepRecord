@@ -90,7 +90,7 @@ struct PDFExportView: View {
     private func presentPrint(data: Data) {
         let info = UIPrintInfo(dictionary: nil)
         info.outputType = .general
-        info.jobName = "睡眠リズム表"
+        info.jobName = String(localized: "pdf.title", defaultValue: "睡眠リズム表")
         let pc = UIPrintInteractionController.shared
         pc.printInfo = info
         pc.printingItem = data

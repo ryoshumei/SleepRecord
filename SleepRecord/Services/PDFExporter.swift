@@ -69,7 +69,10 @@ enum PDFExporter {
         pageNum: Int,
         totalPages: Int
     ) {
-        let title = "睡眠リズム表" as NSString
+        let title = String(
+            localized: "pdf.title",
+            defaultValue: "睡眠リズム表"
+        ) as NSString
         let titleAttrs: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 18),
             .foregroundColor: UIColor.black
@@ -78,7 +81,12 @@ enum PDFExporter {
 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd"
-        let range = "期間: \(formatter.string(from: startDate)) 〜 \(formatter.string(from: endDate))" as NSString
+        let startStr = formatter.string(from: startDate)
+        let endStr = formatter.string(from: endDate)
+        let range = String(
+            localized: "pdf.period",
+            defaultValue: "期間: \(startStr) 〜 \(endStr)"
+        ) as NSString
         let rangeAttrs: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 11),
             .foregroundColor: UIColor.darkGray
@@ -130,9 +138,12 @@ enum PDFExporter {
         for r in [amRect, pmRect, notesBannerRect] {
             let p = UIBezierPath(rect: r); p.lineWidth = 0.5; p.stroke()
         }
-        ("午前" as NSString).draw(in: amRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
-        ("午後" as NSString).draw(in: pmRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
-        ("備考欄" as NSString).draw(in: notesBannerRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+        let amLabel = String(localized: "chart.am", defaultValue: "午前") as NSString
+        let pmLabel = String(localized: "chart.pm", defaultValue: "午後") as NSString
+        let notesLabel = String(localized: "chart.notes", defaultValue: "備考欄") as NSString
+        amLabel.draw(in: amRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+        pmLabel.draw(in: pmRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
+        notesLabel.draw(in: notesBannerRect.insetBy(dx: 0, dy: 1), withAttributes: bannerAttrs)
 
         // Hour numbers row: 0-11 / 0-11
         let hourFont = UIFont.systemFont(ofSize: 7)
@@ -154,7 +165,7 @@ enum PDFExporter {
 
         let formatter = DateFormatter()
         formatter.calendar = calendar
-        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.locale = .current
         formatter.dateFormat = "M/d (E)"
 
         let labelAttrs: [NSAttributedString.Key: Any] = [
