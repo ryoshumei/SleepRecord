@@ -33,6 +33,7 @@
 		E134042E55B74CEA7BE415F3 /* DayRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAD35CBE6DC26544F42A972 /* DayRowView.swift */; };
 		E3EA61748116521467DAADC5 /* SleepSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05162CE0B8F25A1FA3F77F94 /* SleepSession.swift */; };
 		E7FD266B8B6A1937B563A219 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819E286A6C47ABF2D3AEFBCD /* HomeView.swift */; };
+		E9A74FBB325952D6EAAC2CFD /* LocalizationCoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44199724E69597284E83BF7A /* LocalizationCoverageTests.swift */; };
 		EBA4FE15BD1BF992F105B0DD /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933EF3115902D0D3484B1275 /* PDFExporter.swift */; };
 		EF4254C8283D584A45A0845D /* MorningCorrectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */; };
 		FF3747522601FC81D4C31516 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 75EF0DEB7341698EB3E0DFB8 /* Localizable.xcstrings */; };
@@ -58,6 +59,7 @@
 		294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculator.swift; sourceTree = "<group>"; };
 		29A730B96846BB43E168E23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31D9537D70160A85EB8CB47C /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		44199724E69597284E83BF7A /* LocalizationCoverageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCoverageTests.swift; sourceTree = "<group>"; };
 		496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculatorTests.swift; sourceTree = "<group>"; };
 		4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachineTests.swift; sourceTree = "<group>"; };
 		4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePreferenceTests.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				1FD915A909C8ED3F44D21813 /* BackfillDetectorTests.swift */,
 				496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */,
 				4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */,
+				44199724E69597284E83BF7A /* LocalizationCoverageTests.swift */,
 				7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */,
 				E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */,
 				4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */,
@@ -312,6 +315,7 @@
 				AD43DA708BE6DE63E711A662 /* BackfillDetectorTests.swift in Sources */,
 				07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */,
 				8E1D6708509DD04C6E3BDE17 /* LanguagePreferenceTests.swift in Sources */,
+				E9A74FBB325952D6EAAC2CFD /* LocalizationCoverageTests.swift in Sources */,
 				03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */,
 				5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */,
 				32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */,
