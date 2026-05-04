@@ -116,8 +116,8 @@ struct HomeView: View {
 
     private func buttonShape(
         emoji: String,
-        title: String,
-        subtitle: String,
+        title: LocalizedStringKey,
+        subtitle: LocalizedStringKey,
         colors: [Color]
     ) -> some View {
         VStack(spacing: 8) {
