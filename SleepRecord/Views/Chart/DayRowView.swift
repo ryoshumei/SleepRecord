@@ -34,10 +34,11 @@ struct DayRowView: View {
             Text(notes)
                 .font(.system(size: 9))
                 .foregroundStyle(notes.isEmpty ? .clear : .primary)
-                .frame(width: notesWidth, height: rowHeight, alignment: .topLeading)
-                .padding(.leading, 4)
                 .lineLimit(2)
                 .truncationMode(.tail)
+                .frame(width: notesWidth, height: rowHeight, alignment: .topLeading)
+                .padding(.leading, 4)
+                .overlay(Rectangle().stroke(Color.black, lineWidth: 0.4))
         }
     }
 }
