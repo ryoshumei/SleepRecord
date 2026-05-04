@@ -1,12 +1,14 @@
 # Sleep Rhythm Chart iOS App — Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Status: ✅ COMPLETED 2026-05-04** — All 16 tasks executed in a single session. Build passes; 39 tests green. See `## Post-implementation deltas` at the bottom for everything that changed since this plan was first written.
 
-**Goal:** Ship a working iOS 17+ SwiftUI app that records nightly sleep with a 2-tap UX, displays a traditional Japanese 睡眠リズム表 chart, syncs via CloudKit, and exports PDF for medical use.
+> **For agentic workers (historical):** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Architecture:** Three-layer SwiftUI app — `Models` (SwiftData `@Model`), `Services` (chart projection, state machine, notifications, PDF), `Views` (TabView root with Home + Chart). All Apple-stack, zero third-party deps. xcodegen drives the Xcode project from a YAML spec.
+**Goal:** Ship a working iOS SwiftUI app that records nightly sleep with a 2-tap UX, displays a traditional Japanese 睡眠リズム表 chart, syncs via CloudKit, and exports PDF for medical use.
 
-**Tech Stack:** Swift 5.9+, SwiftUI, SwiftData + CloudKit Private DB, PDFKit, UserNotifications, XCTest. xcodegen for project generation. Xcode 26.4+, iOS 17+.
+**Architecture:** Three-layer SwiftUI app — `Models` (SwiftData `@Model`), `Services` (chart projection, state machine, notifications, PDF, validator), `Views` (TabView root with Home + Chart). All Apple-stack, zero third-party deps. xcodegen drives the Xcode project from a YAML spec.
+
+**Tech Stack:** Swift 5.9+, SwiftUI, SwiftData + CloudKit Private DB, PDFKit, UserNotifications, XCTest. xcodegen for project generation. Xcode 26.4+, iOS 26.4+ (originally drafted for iOS 17+; bumped during implementation).
 
 **Spec reference:** `docs/superpowers/specs/2026-05-04-sleep-rhythm-chart-design.md`
 
@@ -1876,10 +1878,56 @@ Expected: All tests PASS.
 
 ---
 
-## Self-Review Notes
+## Self-Review Notes (pre-execution)
 
 - Spec coverage: All sections of `2026-05-04-sleep-rhythm-chart-design.md` have a corresponding task.
 - CloudKit container in `DataStore` falls back to local-only on failure so the project builds even without a configured developer team.
 - Code signing is disabled (`CODE_SIGNING_ALLOWED=NO`) for build verification since no team is configured.
 - PDF page-split logic is testable; PDF rendering itself is visual and verified by manual run in simulator.
 - View state ownership: `HomeView` derives state from `@Query` of `SleepSession`. The "active session" is `sessions.first` (most recent); refined logic could check date window if needed in v2.
+
+---
+
+## Post-implementation deltas
+
+This plan was written before any code was running. Things that changed during execution and follow-up debug cycles:
+
+### Build / tooling
+- **iOS deployment target**: 17.0 → **26.4** (user request to support up to iOS 26.4.1).
+- **Simulator name**: this machine has `iPhone 17`, not `iPhone 16` — the test invocations in the plan use the wrong name; corrected version is in `CLAUDE.md`.
+- **xcodebuild requires `DEVELOPER_DIR` prefix** because `xcode-select` points at CommandLineTools. All build/test commands need `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` and the absolute path to xcodebuild. (`sudo xcodebuild -runFirstLaunch` would fix this permanently but needs sudo.)
+- **xcodegen captures the file list at generation time.** Adding new `.swift` files (e.g. `SleepRecordValidator.swift`) requires re-running `xcodegen generate` before the next build, otherwise they won't be compiled.
+
+### Schema / model (Task 1)
+SwiftData + CloudKit imposed three rules the original plan didn't mention:
+1. `@Attribute(.unique)` is forbidden by CloudKit. Removed from `id`.
+2. All non-optional `@Model` properties need **property-level** defaults (not init defaults). Added `= UUID()`, `= Date.distantPast`, `= ""`.
+3. Must check `FileManager.ubiquityIdentityToken` *before* enabling CloudKit, otherwise `NSCloudKitMirroringDelegate` hard-traps with `brk #1` deeper than try/catch can reach.
+
+### Services
+- **Task 2 (ChartCellCalculator)**: added defensive guards on `Range<Date>` construction (`bedInAt < bedEnd`, `asleepAt < awakeAt`) — Swift's range types crash on invalid ordering. Also added `notes(forDay:sessions:)` for the chart/PDF inline notes column.
+- **Task 5 (DataStore)**: rewritten to do the iCloud-token check first, then fall through CloudKit → local (separate "Cloud" vs "Local" config names) → in-memory.
+- **Task 7 (PDFExporter)**:
+  - `pages(totalDays:)` made `nonisolated` so tests can call it from non-MainActor contexts.
+  - Removed the standalone "備考一覧" final page; replaced with a **right-side notes column** drawn alongside the chart on every page.
+  - Added 2-row header (午前/午後 banner + 0-11/0-11 hour labels) to match the traditional paper format.
+- **New service: `SleepRecordValidator`** (not in original plan). Pure function checking `bedIn < bedOut` and `bedIn ≤ asleep ≤ awake ≤ bedOut`. Both edit sheets disable Save when invalid and show an inline red error.
+
+### Views
+- **Task 9 (HomeView)**: `navigationTitle(date, formatter:)` doesn't exist on SwiftUI View — use `formatter.string(from: date)` first.
+- **Task 10 (MorningCorrectionSheet)**:
+  - Bed times are now **editable** (DatePicker), not read-only text.
+  - All `in:` constraints removed from DatePickers because `ClosedRange` traps when initial state is inconsistent (e.g. `bedIn == bedOut` from a double-tap). Validator handles the constraint at save time instead.
+  - `init` defensively clamps `asleepAt`/`awakeAt` into the bed window.
+- **Task 11 (ChartView / DayRowView)**:
+  - Date order flipped to **ascending** (top→down). `ScrollViewReader` auto-scrolls to today on appear.
+  - 2-row header (午前/午後 banner + 0-11/0-11 hour numbers + 備考欄 banner).
+  - 備考欄 promoted to a **dedicated right-side column** in the row layout, not a subtitle below.
+
+### Tests
+- Original plan: 16 tests across 4 suites (`ChartCellCalculator`, `SleepStateMachine`, `BackfillDetector`, `PDFLayoutBuilder`).
+- Final: **39 tests across 5 suites** — added `SleepRecordValidatorTests` (15) and grew `ChartCellCalculatorTests` from 5 → 13 (added `*_NoCrash` regression cases and 5 notes-related tests).
+- All 39 PASS in ~0.05s on iPhone 17 simulator.
+
+### Skipped
+- Integration tests (SwiftData CRUD with in-memory ModelContainer, mocked `UNUserNotificationCenter`) — original plan §12.2. Service boundaries were cleaner than expected and unit tests cover the logic. Re-evaluate for v2.
