@@ -13,18 +13,31 @@ struct MorningCorrectionSheet: View {
 
     init(session: SleepSession) {
         self.session = session
-        let bedOut = session.bedOutAt ?? .now
-        let defaultAsleep = session.asleepAt
-            ?? Calendar.current.date(byAdding: .minute, value: 30, to: session.bedInAt)
-            ?? session.bedInAt
-        let defaultAwake = session.awakeAt
-            ?? Calendar.current.date(byAdding: .minute, value: -15, to: bedOut)
-            ?? bedOut
+        // bedOut may equal bedIn (e.g. user double-tapped) or even be earlier in
+        // edge cases. Clamp it to be at least bedIn so downstream picker bounds
+        // are valid; the user can correct it via the editable bedOut picker.
+        let rawBedOut = session.bedOutAt ?? .now
+        let bedOut = max(rawBedOut, session.bedInAt)
+        // Default asleep/awake midway between bedIn and bedOut when no record
+        // exists yet. If the bed window is too short to hold the +30/-15 defaults,
+        // clamp to the bed window itself.
+        let defaultAsleep = MorningCorrectionSheet.clamp(
+            session.asleepAt ?? Calendar.current.date(byAdding: .minute, value: 30, to: session.bedInAt) ?? session.bedInAt,
+            to: session.bedInAt...bedOut
+        )
+        let defaultAwake = MorningCorrectionSheet.clamp(
+            session.awakeAt ?? Calendar.current.date(byAdding: .minute, value: -15, to: bedOut) ?? bedOut,
+            to: defaultAsleep...bedOut
+        )
         self._bedInAt = State(initialValue: session.bedInAt)
         self._bedOutAt = State(initialValue: bedOut)
         self._asleepAt = State(initialValue: defaultAsleep)
         self._awakeAt = State(initialValue: defaultAwake)
         self._notes = State(initialValue: session.notes)
+    }
+
+    static func clamp(_ value: Date, to range: ClosedRange<Date>) -> Date {
+        min(max(value, range.lowerBound), range.upperBound)
     }
 
     private var validationError: String? {
@@ -42,20 +55,20 @@ struct MorningCorrectionSheet: View {
                         Label("入床", systemImage: "bed.double.fill")
                             .foregroundStyle(.red)
                     }
-                    DatePicker(selection: $bedOutAt, in: bedInAt..., displayedComponents: [.date, .hourAndMinute]) {
+                    DatePicker(selection: $bedOutAt, displayedComponents: [.date, .hourAndMinute]) {
                         Label("起床", systemImage: "sun.max.fill")
                             .foregroundStyle(.orange)
                     }
                 }
 
                 Section("何時頃に眠れましたか？") {
-                    DatePicker("入眠時刻", selection: $asleepAt, in: bedInAt...bedOutAt, displayedComponents: [.hourAndMinute])
+                    DatePicker("入眠時刻", selection: $asleepAt, displayedComponents: [.hourAndMinute])
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                 }
 
                 Section("何時頃目が覚めましたか？") {
-                    DatePicker("覚醒時刻", selection: $awakeAt, in: asleepAt...bedOutAt, displayedComponents: [.hourAndMinute])
+                    DatePicker("覚醒時刻", selection: $awakeAt, displayedComponents: [.hourAndMinute])
                         .datePickerStyle(.wheel)
                         .labelsHidden()
                 }
