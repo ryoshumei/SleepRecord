@@ -178,6 +178,16 @@ enum PDFExporter {
                 drawCell(rect: cellRect, cell: cell)
             }
 
+            // Notes cell border (per-row, matches drawCell line weight)
+            let notesCellRect = CGRect(
+                x: notesLeft, y: y,
+                width: notesColumnWidth, height: cellHeight
+            )
+            UIColor.black.setStroke()
+            let notesCellBorder = UIBezierPath(rect: notesCellRect)
+            notesCellBorder.lineWidth = 0.3
+            notesCellBorder.stroke()
+
             let notes = calc.notes(forDay: day, sessions: sessions)
             if !notes.isEmpty {
                 let notesRect = CGRect(
@@ -198,14 +208,6 @@ enum PDFExporter {
         UIColor.black.setStroke()
         separator.lineWidth = 1.5
         separator.stroke()
-
-        // Border around the notes column body
-        let notesBodyRect = CGRect(x: notesLeft, y: chartTop,
-                                    width: notesColumnWidth,
-                                    height: CGFloat(days.count) * cellHeight)
-        let notesBorder = UIBezierPath(rect: notesBodyRect)
-        notesBorder.lineWidth = 0.5
-        notesBorder.stroke()
     }
 
     private static func centeredParagraphStyle() -> NSParagraphStyle {
