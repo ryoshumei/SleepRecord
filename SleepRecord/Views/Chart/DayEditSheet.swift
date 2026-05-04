@@ -17,6 +17,13 @@ struct DayEditSheet: View {
 
     private var calendar: Calendar { .current }
 
+    private var validationError: String? {
+        SleepRecordValidator.validate(
+            bedInAt: bedInAt, bedOutAt: bedOutAt,
+            asleepAt: asleepAt, awakeAt: awakeAt
+        )?.message()
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -25,6 +32,13 @@ struct DayEditSheet: View {
                     DatePicker("眠った", selection: $asleepAt, displayedComponents: [.date, .hourAndMinute])
                     DatePicker("目覚めた", selection: $awakeAt, displayedComponents: [.date, .hourAndMinute])
                     DatePicker("布団から出た", selection: $bedOutAt, displayedComponents: [.date, .hourAndMinute])
+                }
+                if let error = validationError {
+                    Section {
+                        Label(error, systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.red)
+                            .font(.footnote)
+                    }
                 }
                 Section("備考") {
                     TextField("メモ", text: $notes, axis: .vertical).lineLimit(3...6)
@@ -45,7 +59,11 @@ struct DayEditSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("キャンセル") { dismiss() } }
-                ToolbarItem(placement: .confirmationAction) { Button("保存") { save() }.bold() }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("保存") { save() }
+                        .bold()
+                        .disabled(validationError != nil)
+                }
             }
             .onAppear(perform: load)
         }

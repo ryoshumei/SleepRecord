@@ -23,6 +23,14 @@ struct MorningCorrectionSheet: View {
         self._notes = State(initialValue: session.notes)
     }
 
+    private var validationError: String? {
+        let bedOut = session.bedOutAt ?? .now
+        return SleepRecordValidator.validateSleepOnly(
+            bedInAt: session.bedInAt, bedOutAt: bedOut,
+            asleepAt: asleepAt, awakeAt: awakeAt
+        )?.message(bedInAt: session.bedInAt, bedOutAt: bedOut)
+    }
+
     var body: some View {
         NavigationStack {
             Form {
@@ -53,6 +61,14 @@ struct MorningCorrectionSheet: View {
                         .labelsHidden()
                 }
 
+                if let error = validationError {
+                    Section {
+                        Label(error, systemImage: "exclamationmark.triangle.fill")
+                            .foregroundStyle(.red)
+                            .font(.footnote)
+                    }
+                }
+
                 Section("備考") {
                     TextField("夜中に目覚めた、寝つきが悪い、など", text: $notes, axis: .vertical)
                         .lineLimit(3...6)
@@ -65,7 +81,9 @@ struct MorningCorrectionSheet: View {
                     Button("後で") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("保存") { save() }.bold()
+                    Button("保存") { save() }
+                        .bold()
+                        .disabled(validationError != nil)
                 }
             }
         }
