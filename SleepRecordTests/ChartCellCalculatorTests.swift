@@ -103,6 +103,67 @@ final class ChartCellCalculatorTests: XCTestCase {
         XCTAssertTrue(cells.allSatisfy { !$0.inBed && !$0.asleep })
     }
 
+    // MARK: notes(forDay:)
+
+    func testNotes_ReturnsEmptyWhenNoSessions() {
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        XCTAssertEqual(calc.notes(forDay: date(2026, 5, 4, 0), sessions: []), "")
+    }
+
+    func testNotes_AnchoredToWakeDay() {
+        // Session: bed 5/3 23:00 → wake 5/4 7:00, notes "寝つき悪い"
+        // Notes should appear on 5/4 (wake day), not 5/3 (bed-in day).
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 3, 23),
+            bedOutAt: date(2026, 5, 4, 7),
+            asleepAt: date(2026, 5, 3, 23, 30),
+            awakeAt: date(2026, 5, 4, 6, 30),
+            notes: "寝つき悪い"
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        XCTAssertEqual(calc.notes(forDay: date(2026, 5, 3, 0), sessions: [s]), "")
+        XCTAssertEqual(calc.notes(forDay: date(2026, 5, 4, 0), sessions: [s]), "寝つき悪い")
+    }
+
+    func testNotes_FallsBackToBedInDayWhenNoBedOut() {
+        // In-progress session has no bedOutAt — anchor to bedInAt.
+        let s = SleepSession(bedInAt: date(2026, 5, 4, 23, 30), notes: "進行中メモ")
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        XCTAssertEqual(calc.notes(forDay: date(2026, 5, 4, 0), sessions: [s]), "進行中メモ")
+    }
+
+    func testNotes_JoinsMultipleSessionsSameDay() {
+        let s1 = SleepSession(
+            bedInAt: date(2026, 5, 4, 13),
+            bedOutAt: date(2026, 5, 4, 14),
+            notes: "昼寝"
+        )
+        let s2 = SleepSession(
+            bedInAt: date(2026, 5, 3, 23),
+            bedOutAt: date(2026, 5, 4, 7),
+            notes: "夜中起きた"
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let notes = calc.notes(forDay: date(2026, 5, 4, 0), sessions: [s1, s2])
+        XCTAssertTrue(notes.contains("昼寝"))
+        XCTAssertTrue(notes.contains("夜中起きた"))
+    }
+
+    func testNotes_SkipsEmptyNotes() {
+        let s1 = SleepSession(
+            bedInAt: date(2026, 5, 3, 23),
+            bedOutAt: date(2026, 5, 4, 7),
+            notes: ""
+        )
+        let s2 = SleepSession(
+            bedInAt: date(2026, 5, 4, 13),
+            bedOutAt: date(2026, 5, 4, 14),
+            notes: "昼寝"
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        XCTAssertEqual(calc.notes(forDay: date(2026, 5, 4, 0), sessions: [s1, s2]), "昼寝")
+    }
+
     func testInvertedSleepRange_IgnoredNoCrash() {
         // asleepAt > awakeAt (e.g., user accidentally inverted slider). Should not crash.
         let s = SleepSession(

@@ -5,10 +5,11 @@ import UIKit
 @MainActor
 enum PDFExporter {
     static let daysPerPage = 35
-    static let cellWidth: CGFloat = 18
-    static let cellHeight: CGFloat = 14
-    static let labelWidth: CGFloat = 56
-    static let pageMargin: CGFloat = 36
+    static let cellWidth: CGFloat = 16
+    static let cellHeight: CGFloat = 16
+    static let labelWidth: CGFloat = 48
+    static let notesColumnWidth: CGFloat = 110
+    static let pageMargin: CGFloat = 24
 
     nonisolated static func pages(totalDays: Int) -> Int {
         max(1, Int(ceil(Double(totalDays) / Double(daysPerPage))))
@@ -45,23 +46,6 @@ enum PDFExporter {
                     totalPages: chunks.count
                 )
                 drawChart(rect: pageRect, days: chunk, sessions: sessions, calc: calc, calendar: cal)
-            }
-
-            let notes = sessions.compactMap { s -> (Date, String)? in
-                guard !s.notes.isEmpty else { return nil }
-                return (s.bedInAt, s.notes)
-            }.sorted(by: { $0.0 < $1.0 })
-
-            if !notes.isEmpty {
-                ctx.beginPage()
-                drawHeader(
-                    rect: pageRect,
-                    startDate: startDate,
-                    endDate: endDate,
-                    pageNum: chunks.count + 1,
-                    totalPages: chunks.count + 1
-                )
-                drawNotes(rect: pageRect, notes: notes, calendar: cal)
             }
         }
     }
@@ -122,7 +106,9 @@ enum PDFExporter {
     ) {
         let chartTop: CGFloat = pageMargin + 60
         let chartLeft = pageMargin + labelWidth
+        let notesLeft = chartLeft + 24 * cellWidth + 8
 
+        // Hour header
         let hourFont = UIFont.systemFont(ofSize: 7)
         for h in 0..<24 {
             let str = "\(h)" as NSString
@@ -131,6 +117,15 @@ enum PDFExporter {
                 withAttributes: [.font: hourFont, .foregroundColor: UIColor.darkGray]
             )
         }
+        // 備考 column header
+        let columnHeaderAttrs: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 8),
+            .foregroundColor: UIColor.darkGray
+        ]
+        ("備考" as NSString).draw(
+            at: CGPoint(x: notesLeft, y: chartTop - 12),
+            withAttributes: columnHeaderAttrs
+        )
 
         let formatter = DateFormatter()
         formatter.calendar = calendar
@@ -141,11 +136,15 @@ enum PDFExporter {
             .font: UIFont.systemFont(ofSize: 9),
             .foregroundColor: UIColor.black
         ]
+        let notesAttrs: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 7),
+            .foregroundColor: UIColor.darkGray
+        ]
 
         for (idx, day) in days.enumerated() {
             let y = chartTop + CGFloat(idx) * cellHeight
             let label = formatter.string(from: day) as NSString
-            label.draw(at: CGPoint(x: pageMargin, y: y + 1), withAttributes: labelAttrs)
+            label.draw(at: CGPoint(x: pageMargin, y: y + 2), withAttributes: labelAttrs)
 
             let cells = calc.cells(forDay: day, sessions: sessions)
             for (h, cell) in cells.enumerated() {
@@ -153,8 +152,20 @@ enum PDFExporter {
                 let cellRect = CGRect(x: x, y: y, width: cellWidth, height: cellHeight)
                 drawCell(rect: cellRect, cell: cell)
             }
+
+            let notes = calc.notes(forDay: day, sessions: sessions)
+            if !notes.isEmpty {
+                let notesRect = CGRect(
+                    x: notesLeft,
+                    y: y + 1,
+                    width: notesColumnWidth,
+                    height: cellHeight - 1
+                )
+                (notes as NSString).draw(in: notesRect, withAttributes: notesAttrs)
+            }
         }
 
+        // AM/PM separator at hour 12
         let midX = chartLeft + 12 * cellWidth
         let separator = UIBezierPath()
         separator.move(to: CGPoint(x: midX, y: chartTop))
@@ -195,44 +206,4 @@ enum PDFExporter {
         }
     }
 
-    private static func drawNotes(rect: CGRect, notes: [(Date, String)], calendar: Calendar) {
-        let formatter = DateFormatter()
-        formatter.calendar = calendar
-        formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateFormat = "M/d (E)"
-
-        let titleAttrs: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 13),
-            .foregroundColor: UIColor.black
-        ]
-        ("備考一覧" as NSString).draw(
-            at: CGPoint(x: pageMargin, y: pageMargin + 50),
-            withAttributes: titleAttrs
-        )
-
-        var y: CGFloat = pageMargin + 80
-        let lineAttrs: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 10),
-            .foregroundColor: UIColor.black
-        ]
-        let dateAttrs: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 10),
-            .foregroundColor: UIColor.darkGray
-        ]
-        for (date, text) in notes {
-            let datePrefix = "\(formatter.string(from: date))  " as NSString
-            datePrefix.draw(at: CGPoint(x: pageMargin, y: y), withAttributes: dateAttrs)
-            let dateWidth = datePrefix.size(withAttributes: dateAttrs).width
-            let body = text as NSString
-            let bodyRect = CGRect(
-                x: pageMargin + dateWidth,
-                y: y,
-                width: rect.width - 2 * pageMargin - dateWidth,
-                height: 60
-            )
-            body.draw(in: bodyRect, withAttributes: lineAttrs)
-            y += 32
-            if y > rect.height - pageMargin { break }
-        }
-    }
 }

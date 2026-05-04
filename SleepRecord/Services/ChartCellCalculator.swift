@@ -67,4 +67,20 @@ struct ChartCellCalculator {
     private func rangesOverlap(_ a: Range<Date>, _ b: Range<Date>) -> Bool {
         a.lowerBound < b.upperBound && b.lowerBound < a.upperBound
     }
+
+    /// Notes for a given day, anchored to the session's wake day (bedOutAt) if
+    /// present, otherwise its bed-in day. This avoids the same note appearing on
+    /// both the night-of and morning-of rows for an overnight session.
+    func notes(forDay day: Date, sessions: [SleepSession]) -> String {
+        let dayStart = calendar.startOfDay(for: day)
+        guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else { return "" }
+        return sessions
+            .filter { s in
+                guard !s.notes.isEmpty else { return false }
+                let anchor = s.bedOutAt ?? s.bedInAt
+                return anchor >= dayStart && anchor < dayEnd
+            }
+            .map(\.notes)
+            .joined(separator: " / ")
+    }
 }
