@@ -11,6 +11,7 @@
 		04C4993B140197385256963B /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */; };
 		07D151D199A9BD09449E4393 /* ChartCellCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */; };
 		0D4740D365E70B8A07FF9227 /* DateRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE2C03EA2A11EBDCA920329 /* DateRange.swift */; };
+		148E63C81E6FF2B45C0114FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EACDFFD13961BB73D23A5DC /* Assets.xcassets */; };
 		32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */; };
 		3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C0F46AC87D4EEF25AE3A9A /* SettingsView.swift */; };
 		49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */; };
@@ -58,6 +59,7 @@
 		67521FA096773EE9254C2399 /* PDFExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportView.swift; sourceTree = "<group>"; };
 		6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachine.swift; sourceTree = "<group>"; };
 		7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLayoutBuilderTests.swift; sourceTree = "<group>"; };
+		7EACDFFD13961BB73D23A5DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		819E286A6C47ABF2D3AEFBCD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		873C825485B7016281FC1955 /* SleepRecordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordValidator.swift; sourceTree = "<group>"; };
 		933EF3115902D0D3484B1275 /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		85864D9AB020D2935F606177 /* SleepRecord */ = {
 			isa = PBXGroup;
 			children = (
+				7EACDFFD13961BB73D23A5DC /* Assets.xcassets */,
 				29A730B96846BB43E168E23C /* Info.plist */,
 				DB6A6306A80903F5D605C49B /* SleepRecord.entitlements */,
 				A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */,
@@ -205,6 +208,7 @@
 			buildConfigurationList = 605B261B76887D5141960A4B /* Build configuration list for PBXNativeTarget "SleepRecord" */;
 			buildPhases = (
 				FE86C5F7A15F3DA8FDD55263 /* Sources */,
+				C3CFF29D8D897D5222B82590 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -273,6 +277,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C3CFF29D8D897D5222B82590 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				148E63C81E6FF2B45C0114FC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6840B96073D0041F7D1070A0 /* Sources */ = {
