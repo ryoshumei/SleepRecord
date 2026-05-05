@@ -49,6 +49,20 @@ struct HomeView: View {
                             .font(.footnote).foregroundStyle(.white.opacity(0.6))
                     }
 
+                    if case .inBed = state {
+                        if SleepStateMachine.isAwakeMidSleep(activeSession: activeSession) {
+                            Button("☀️ おはよう") { tapMorning() }
+                                .font(.footnote)
+                                .foregroundStyle(.white.opacity(0.85))
+                                .padding(.top, 32)
+                        } else {
+                            Button("🌗 目覚めた") { tapWokeUp() }
+                                .font(.footnote)
+                                .foregroundStyle(.white.opacity(0.85))
+                                .padding(.top, 32)
+                        }
+                    }
+
                     Spacer()
                 }
             }
@@ -91,12 +105,22 @@ struct HomeView: View {
                 )
             }
         case .inBed:
-            Button(action: tapMorning) {
-                buttonShape(
-                    emoji: "☀️", title: "おはよう",
-                    subtitle: "タップで起床時刻を記録",
-                    colors: [Color.orange, Color(red: 0.96, green: 0.62, blue: 0.04)]
-                )
+            if SleepStateMachine.isAwakeMidSleep(activeSession: activeSession) {
+                Button(action: tapBackToSleep) {
+                    buttonShape(
+                        emoji: "🛏️", title: "再び眠る",
+                        subtitle: elapsedSinceWokeUp(),
+                        colors: [Color(red: 0.36, green: 0.13, blue: 0.71), Color.purple]
+                    )
+                }
+            } else {
+                Button(action: tapMorning) {
+                    buttonShape(
+                        emoji: "☀️", title: "おはよう",
+                        subtitle: "タップで起床時刻を記録",
+                        colors: [Color.orange, Color(red: 0.96, green: 0.62, blue: 0.04)]
+                    )
+                }
             }
         case .correctionPending:
             Button(action: { showCorrectionSheet = true }) {
@@ -145,6 +169,7 @@ struct HomeView: View {
     }
 
     private func tapMorning() {
+        closeOpenWakeEventsForMorning()
         guard let s = activeSession else {
             let result = BackfillDetector.detect(now: now, activeSession: nil)
             backfillSuggested = result.suggestedBedInAt ?? now
@@ -155,6 +180,57 @@ struct HomeView: View {
         s.updatedAt = now
         try? modelContext.save()
         showCorrectionSheet = true
+    }
+
+    private func tapWokeUp() {
+        guard let s = activeSession else { return }
+        let event = WakeEvent(startedAt: now, session: s)
+        modelContext.insert(event)
+        s.wakeEvents.append(event)
+        s.updatedAt = now
+        try? modelContext.save()
+    }
+
+    private func tapBackToSleep() {
+        guard let s = activeSession else { return }
+        if let openEvent = s.wakeEvents.first(where: { $0.isOpen }) {
+            openEvent.endedAt = now
+            openEvent.updatedAt = now
+            s.updatedAt = now
+            try? modelContext.save()
+        }
+    }
+
+    /// Closes any open wake events; called from tapMorning before existing logic runs.
+    private func closeOpenWakeEventsForMorning() {
+        guard let s = activeSession else { return }
+        var dirty = false
+        for event in s.wakeEvents where event.isOpen {
+            event.endedAt = now
+            event.updatedAt = now
+            dirty = true
+        }
+        if dirty {
+            s.updatedAt = now
+            try? modelContext.save()
+        }
+    }
+
+    private func elapsedSinceWokeUp() -> LocalizedStringKey {
+        guard let s = activeSession,
+              let openEvent = s.wakeEvents.first(where: { $0.isOpen })
+        else { return "" }
+        let secs = Int(now.timeIntervalSince(openEvent.startedAt))
+        let totalMin = max(0, secs / 60)
+        if totalMin < 1 {
+            return "wake.elapsed.minutesUnder1"
+        }
+        if totalMin < 60 {
+            return LocalizedStringKey("wake.elapsed.minutes \(totalMin)")
+        }
+        let h = totalMin / 60
+        let m = totalMin % 60
+        return LocalizedStringKey("wake.elapsed.hoursMinutes \(h) \(m)")
     }
 
     private func autoPresentCorrectionIfNeeded() {

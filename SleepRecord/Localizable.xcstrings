@@ -302,6 +302,26 @@
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒×%1$d (進行中)" } },
       "en" : { "stringUnit" : { "state" : "translated", "value" : "Wakes×%1$d (open)" } }
     } },
+    "目覚めた" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めた" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Woke up" } }
+    } },
+    "再び眠る" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "再び眠る" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Back to sleep" } }
+    } },
+    "wake.elapsed.minutesUnder1" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて 1分未満" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for under 1m" } }
+    } },
+    "wake.elapsed.minutes" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて %d分" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for %dm" } }
+    } },
+    "wake.elapsed.hoursMinutes" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて %1$d時間%2$d分" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for %1$dh %2$dm" } }
+    } },
 
     "notification.bedtimeReminder.title" : { "extractionState" : "manual", "localizations" : {
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "そろそろお休みの時間です" } },
