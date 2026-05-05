@@ -322,6 +322,18 @@
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて %1$d時間%2$d分" } },
       "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for %1$dh %2$dm" } }
     } },
+    "中途覚醒" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakenings" } }
+    } },
+    "（なし）" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "（なし）" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "(none)" } }
+    } },
+    "追加" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "追加" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Add" } }
+    } },
 
     "notification.bedtimeReminder.title" : { "extractionState" : "manual", "localizations" : {
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "そろそろお休みの時間です" } },
