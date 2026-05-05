@@ -18,10 +18,20 @@ struct DayEditSheet: View {
     private var calendar: Calendar { .current }
 
     private var validationError: String? {
-        SleepRecordValidator.validate(
+        if let timeIssue = SleepRecordValidator.validate(
             bedInAt: bedInAt, bedOutAt: bedOutAt,
             asleepAt: asleepAt, awakeAt: awakeAt
-        )?.message()
+        ) {
+            return timeIssue.message()
+        }
+        guard let s = existing else { return nil }
+        let events = s.wakeEvents.map { (startedAt: $0.startedAt, endedAt: $0.endedAt) }
+        if let wakeIssue = SleepRecordValidator.validateWakeEvents(
+            events, bedInAt: bedInAt, bedOutAt: bedOutAt
+        ) {
+            return wakeIssue.message()
+        }
+        return nil
     }
 
     var body: some View {
@@ -40,6 +50,26 @@ struct DayEditSheet: View {
                             .font(.footnote)
                     }
                 }
+                if let s = existing {
+                    Section("中途覚醒") {
+                        if s.wakeEvents.isEmpty {
+                            Text("（なし）")
+                                .foregroundStyle(.secondary)
+                                .font(.footnote)
+                        } else {
+                            ForEach(s.wakeEvents.sorted(by: { $0.startedAt < $1.startedAt })) { event in
+                                wakeEventRow(event)
+                            }
+                        }
+                        Button {
+                            addWakeEvent(to: s)
+                        } label: {
+                            Label("追加", systemImage: "plus.circle.fill")
+                                .font(.footnote)
+                        }
+                    }
+                }
+
                 Section("備考") {
                     TextField("メモ", text: $notes, axis: .vertical).lineLimit(3...6)
                 }
@@ -113,5 +143,51 @@ struct DayEditSheet: View {
         }
         try? modelContext.save()
         dismiss()
+    }
+
+    @ViewBuilder
+    private func wakeEventRow(_ event: WakeEvent) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                DatePicker("", selection: Binding(
+                    get: { event.startedAt },
+                    set: { event.startedAt = $0; event.updatedAt = .now }
+                ), displayedComponents: [.date, .hourAndMinute])
+                .labelsHidden()
+                DatePicker("", selection: Binding(
+                    get: { event.endedAt ?? event.startedAt },
+                    set: { event.endedAt = $0; event.updatedAt = .now }
+                ), displayedComponents: [.date, .hourAndMinute])
+                .labelsHidden()
+            }
+            Spacer()
+            Button(role: .destructive) {
+                deleteWakeEvent(event, from: existing)
+            } label: {
+                Image(systemName: "trash")
+            }
+        }
+    }
+
+    private func addWakeEvent(to session: SleepSession) {
+        let mid = bedInAt.addingTimeInterval(bedOutAt.timeIntervalSince(bedInAt) / 2)
+        let end = mid.addingTimeInterval(10 * 60)
+        let event = WakeEvent(
+            startedAt: mid,
+            endedAt: end,
+            session: session
+        )
+        modelContext.insert(event)
+        session.wakeEvents.append(event)
+        session.updatedAt = .now
+    }
+
+    private func deleteWakeEvent(_ event: WakeEvent, from session: SleepSession?) {
+        guard let session else { return }
+        if let idx = session.wakeEvents.firstIndex(where: { $0.id == event.id }) {
+            session.wakeEvents.remove(at: idx)
+        }
+        modelContext.delete(event)
+        session.updatedAt = .now
     }
 }
