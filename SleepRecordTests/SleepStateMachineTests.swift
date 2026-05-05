@@ -23,4 +23,18 @@ final class SleepStateMachineTests: XCTestCase {
         )
         XCTAssertEqual(SleepStateMachine.state(activeSession: s), .completed)
     }
+
+    func testIsAwakeMidSleep_TrueWhenOpenWakeEventExists() {
+        let session = SleepSession(bedInAt: .now)
+        session.wakeEvents.append(WakeEvent(startedAt: .now, session: session))
+        XCTAssertTrue(SleepStateMachine.isAwakeMidSleep(activeSession: session))
+    }
+
+    func testIsAwakeMidSleep_FalseWhenAllEventsClosed() {
+        let session = SleepSession(bedInAt: .now)
+        session.wakeEvents.append(WakeEvent(
+            startedAt: .now, endedAt: .now.addingTimeInterval(60), session: session
+        ))
+        XCTAssertFalse(SleepStateMachine.isAwakeMidSleep(activeSession: session))
+    }
 }

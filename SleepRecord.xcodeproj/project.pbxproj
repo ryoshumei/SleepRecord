@@ -37,6 +37,7 @@
 		E9A74FBB325952D6EAAC2CFD /* LocalizationCoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44199724E69597284E83BF7A /* LocalizationCoverageTests.swift */; };
 		EBA4FE15BD1BF992F105B0DD /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933EF3115902D0D3484B1275 /* PDFExporter.swift */; };
 		EF4254C8283D584A45A0845D /* MorningCorrectionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */; };
+		F66A538EC608E11BB2A5BEA2 /* WakeEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335EAFCD68859F2CD0300F47 /* WakeEventTests.swift */; };
 		FF3747522601FC81D4C31516 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 75EF0DEB7341698EB3E0DFB8 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		294E33418FBDC7A5E8785F74 /* ChartCellCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculator.swift; sourceTree = "<group>"; };
 		29A730B96846BB43E168E23C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		31D9537D70160A85EB8CB47C /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		335EAFCD68859F2CD0300F47 /* WakeEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeEventTests.swift; sourceTree = "<group>"; };
 		44199724E69597284E83BF7A /* LocalizationCoverageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCoverageTests.swift; sourceTree = "<group>"; };
 		496D967ED8E2BDBAFFB25FCF /* ChartCellCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCellCalculatorTests.swift; sourceTree = "<group>"; };
 		4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachineTests.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				7E6D714E65055A524FFB490D /* PDFLayoutBuilderTests.swift */,
 				E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */,
 				4991F43B1DF4977BB3E1522E /* SleepStateMachineTests.swift */,
+				335EAFCD68859F2CD0300F47 /* WakeEventTests.swift */,
 			);
 			path = SleepRecordTests;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				03528E017304E24EE9023812 /* PDFLayoutBuilderTests.swift in Sources */,
 				5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */,
 				32E1C64664B19C1FB63F23A3 /* SleepStateMachineTests.swift in Sources */,
+				F66A538EC608E11BB2A5BEA2 /* WakeEventTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
