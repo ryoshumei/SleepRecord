@@ -40,4 +40,16 @@ final class LocalizationCoverageTests: XCTestCase {
     func testValidator_AsleepAfterAwake_HasEnglish() {
         assertEnglish("validator.asleepAfterAwake")
     }
+
+    func testValidator_WakeEventOutOfBounds_HasEnglish() {
+        assertEnglish("validator.wakeEventOutOfBounds")
+    }
+
+    func testValidator_WakeEventOverlap_HasEnglish() {
+        assertEnglish("validator.wakeEventOverlap")
+    }
+
+    func testValidator_WakeEventInverted_HasEnglish() {
+        assertEnglish("validator.wakeEventInverted")
+    }
 }

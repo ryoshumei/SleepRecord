@@ -169,4 +169,36 @@ final class SleepRecordValidatorTests: XCTestCase {
         let m = SleepRecordValidator.Issue.asleepAfterAwake.message()
         XCTAssertFalse(m.isEmpty)
     }
+
+    // MARK: validateWakeEvents
+
+    func testValidateWakeEvents_OutOfBounds_StartBeforeBedIn() {
+        let r = SleepRecordValidator.validateWakeEvents(
+            [(startedAt: dt(2026, 5, 4, 22, 0), endedAt: dt(2026, 5, 4, 22, 30))],
+            bedInAt: dt(2026, 5, 4, 23, 0),
+            bedOutAt: dt(2026, 5, 5, 7, 0)
+        )
+        XCTAssertEqual(r, .wakeEventOutOfBounds)
+    }
+
+    func testValidateWakeEvents_Overlap() {
+        let r = SleepRecordValidator.validateWakeEvents(
+            [
+                (startedAt: dt(2026, 5, 5, 1, 0), endedAt: dt(2026, 5, 5, 1, 30)),
+                (startedAt: dt(2026, 5, 5, 1, 15), endedAt: dt(2026, 5, 5, 1, 45))
+            ],
+            bedInAt: dt(2026, 5, 4, 23, 0),
+            bedOutAt: dt(2026, 5, 5, 7, 0)
+        )
+        XCTAssertEqual(r, .wakeEventOverlap)
+    }
+
+    func testValidateWakeEvents_Inverted() {
+        let r = SleepRecordValidator.validateWakeEvents(
+            [(startedAt: dt(2026, 5, 5, 3, 30), endedAt: dt(2026, 5, 5, 3, 0))],
+            bedInAt: dt(2026, 5, 4, 23, 0),
+            bedOutAt: dt(2026, 5, 5, 7, 0)
+        )
+        XCTAssertEqual(r, .wakeEventInverted)
+    }
 }

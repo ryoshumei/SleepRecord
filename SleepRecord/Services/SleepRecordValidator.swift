@@ -13,6 +13,9 @@ enum SleepRecordValidator {
         case asleepBeforeBedIn          // asleepAt < bedInAt
         case awakeAfterBedOut           // awakeAt > bedOutAt
         case asleepAfterAwake           // asleepAt > awakeAt
+        case wakeEventOutOfBounds       // wake event start or end outside [bedInAt, bedOutAt]
+        case wakeEventOverlap           // two wake events have overlapping ranges
+        case wakeEventInverted          // wake event endedAt <= startedAt
     }
 
     static func validate(
@@ -41,6 +44,41 @@ enum SleepRecordValidator {
         if asleepAt < bedInAt { return .asleepBeforeBedIn }
         if awakeAt > bedOutAt { return .awakeAfterBedOut }
         if asleepAt > awakeAt { return .asleepAfterAwake }
+        return nil
+    }
+
+    /// Validates a list of (startedAt, endedAt?) wake events against the bed
+    /// window. Returns the first issue found, or nil if all events are OK.
+    /// Open events (endedAt == nil) are accepted as long as startedAt is in bounds.
+    static func validateWakeEvents(
+        _ events: [(startedAt: Date, endedAt: Date?)],
+        bedInAt: Date,
+        bedOutAt: Date
+    ) -> Issue? {
+        let upper = bedOutAt
+        for e in events {
+            if e.startedAt < bedInAt || e.startedAt > upper {
+                return .wakeEventOutOfBounds
+            }
+            if let end = e.endedAt {
+                if end < bedInAt || end > upper {
+                    return .wakeEventOutOfBounds
+                }
+                if end <= e.startedAt {
+                    return .wakeEventInverted
+                }
+            }
+        }
+        let closed = events.compactMap { e -> (Date, Date)? in
+            guard let end = e.endedAt, end > e.startedAt else { return nil }
+            return (e.startedAt, end)
+        }
+        for i in 0..<closed.count {
+            for j in (i + 1)..<closed.count {
+                let a = closed[i], b = closed[j]
+                if a.0 < b.1 && b.0 < a.1 { return .wakeEventOverlap }
+            }
+        }
         return nil
     }
 }
@@ -84,6 +122,21 @@ extension SleepRecordValidator.Issue {
             return String(
                 localized: "validator.asleepAfterAwake",
                 defaultValue: "「眠った」は「目覚めた」より前である必要があります"
+            )
+        case .wakeEventOutOfBounds:
+            return String(
+                localized: "validator.wakeEventOutOfBounds",
+                defaultValue: "中途覚醒の時刻は入床〜起床の範囲内に収めてください"
+            )
+        case .wakeEventOverlap:
+            return String(
+                localized: "validator.wakeEventOverlap",
+                defaultValue: "中途覚醒の時間が他のイベントと重なっています"
+            )
+        case .wakeEventInverted:
+            return String(
+                localized: "validator.wakeEventInverted",
+                defaultValue: "中途覚醒の終了時刻は開始時刻より後である必要があります"
             )
         }
     }

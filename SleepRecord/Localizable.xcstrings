@@ -282,6 +282,18 @@
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "「眠った」は「目覚めた」より前である必要があります" } },
       "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Fell asleep\" must be earlier than \"Woke up\"" } }
     } },
+    "validator.wakeEventOutOfBounds" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の時刻は入床〜起床の範囲内に収めてください" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakening must fall within the bed window" } }
+    } },
+    "validator.wakeEventOverlap" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の時間が他のイベントと重なっています" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakenings cannot overlap" } }
+    } },
+    "validator.wakeEventInverted" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の終了時刻は開始時刻より後である必要があります" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awakening end must be after start" } }
+    } },
 
     "notification.bedtimeReminder.title" : { "extractionState" : "manual", "localizations" : {
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "そろそろお休みの時間です" } },
