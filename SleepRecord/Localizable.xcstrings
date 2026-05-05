@@ -1,373 +1,1517 @@
 {
   "sourceLanguage" : "ja",
-  "version" : "1.0",
   "strings" : {
-    "ホーム" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "ホーム" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Home" } }
-    } },
-    "チャート" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "チャート" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Chart" } }
-    } },
-    "設定" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Settings" } }
-    } },
-    "完了" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "完了" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } }
-    } },
-    "キャンセル" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "キャンセル" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } }
-    } },
-    "保存" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "保存" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } }
-    } },
-    "後で" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "後で" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Later" } }
-    } },
-    "確定" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "確定" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Confirm" } }
-    } },
-    "閉じる" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "閉じる" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Close" } }
-    } },
+    "（なし）" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(none)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（なし）"
+          }
+        }
+      }
+    },
+    "「おやすみ」のタップが見つかりません" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No \"Good night\" tap found"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「おやすみ」のタップが見つかりません"
+          }
+        }
+      }
+    },
+    "「プレビュー」を押して PDF を生成してください" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap Preview to generate the PDF"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「プレビュー」を押して PDF を生成してください"
+          }
+        }
+      }
+    },
+    "「設定 > Apple ID > iCloud」でアカウントを有効にすると、データが iCloud に同期されます。" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable an account in Settings > Apple ID > iCloud to sync data with iCloud."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「設定 > Apple ID > iCloud」でアカウントを有効にすると、データが iCloud に同期されます。"
+          }
+        }
+      }
+    },
+    "%@" : {
 
-    "おやすみ" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "おやすみ" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Good night" } }
-    } },
-    "おはよう" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "おはよう" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Good morning" } }
-    } },
-    "補正する" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "補正する" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Adjust" } }
-    } },
-    "タップで入床時刻を記録" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "タップで入床時刻を記録" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to record bedtime" } }
-    } },
-    "タップで起床時刻を記録" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "タップで起床時刻を記録" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap to record wake-up time" } }
-    } },
-    "入眠/覚醒時刻を確定" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入眠/覚醒時刻を確定" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Confirm asleep/wake times" } }
-    } },
-    "「おやすみ」のタップが見つかりません" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「おやすみ」のタップが見つかりません" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "No \"Good night\" tap found" } }
-    } },
-    "昨夜は何時頃に布団に入りましたか？" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "昨夜は何時頃に布団に入りましたか？" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "About what time did you go to bed last night?" } }
-    } },
-    "入床時刻" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入床時刻" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Bedtime" } }
-    } },
-    "入床時刻の補完" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入床時刻の補完" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Set Bedtime" } }
-    } },
+    },
+    "☀️ おはようございます" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Good Morning"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ おはようございます"
+          }
+        }
+      }
+    },
+    "1.0.0" : {
 
-    "☀️ おはようございます" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "☀️ おはようございます" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "☀️ Good Morning" } }
-    } },
-    "昨夜の記録（編集可能）" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "昨夜の記録（編集可能）" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Last night's record (editable)" } }
-    } },
-    "入床" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入床" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Bedtime" } }
-    } },
-    "起床" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "起床" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wake-up" } }
-    } },
-    "何時頃に眠れましたか？" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "何時頃に眠れましたか？" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "About what time did you fall asleep?" } }
-    } },
-    "何時頃目が覚めましたか？" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "何時頃目が覚めましたか？" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "About what time did you wake up?" } }
-    } },
-    "入眠時刻" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入眠時刻" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Asleep time" } }
-    } },
-    "覚醒時刻" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒時刻" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wake time" } }
-    } },
-    "備考" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "備考" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } }
-    } },
-    "夜中に目覚めた、寝つきが悪い、など" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "夜中に目覚めた、寝つきが悪い、など" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Woke up at night, trouble falling asleep, etc." } }
-    } },
+    },
+    "chart.am" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AM"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "午前"
+          }
+        }
+      }
+    },
+    "chart.notes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備考欄"
+          }
+        }
+      }
+    },
+    "chart.pm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PM"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "午後"
+          }
+        }
+      }
+    },
+    "English" : {
 
-    "時刻" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "時刻" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Times" } }
-    } },
-    "布団に入った" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "布団に入った" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Got in bed" } }
-    } },
-    "眠った" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "眠った" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Fell asleep" } }
-    } },
-    "目覚めた" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めた" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Woke up" } }
-    } },
-    "布団から出た" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "布団から出た" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Got out of bed" } }
-    } },
-    "メモ" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "メモ" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Note" } }
-    } },
-    "この日の記録を削除" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "この日の記録を削除" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete this day's record" } }
-    } },
+    },
+    "iCloud アカウント未設定" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud account not configured"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud アカウント未設定"
+          }
+        }
+      }
+    },
+    "iCloud で同期中" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Syncing with iCloud"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud で同期中"
+          }
+        }
+      }
+    },
+    "iCloud 同期" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Sync"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud 同期"
+          }
+        }
+      }
+    },
+    "notification.bedtimeReminder.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't forget to tap before bed 🌙"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おやすみ前にタップを忘れずに 🌙"
+          }
+        }
+      }
+    },
+    "notification.bedtimeReminder.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time to wind down"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "そろそろお休みの時間です"
+          }
+        }
+      }
+    },
+    "pdf.period" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Period: %1$@ – %2$@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期間: %1$@ 〜 %2$@"
+          }
+        }
+      }
+    },
+    "pdf.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Rhythm Chart"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "睡眠リズム表"
+          }
+        }
+      }
+    },
+    "PDF出力" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Export PDF"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF出力"
+          }
+        }
+      }
+    },
+    "SLEEP RHYTHM" : {
 
-    "午前" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "午前" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "AM" } }
-    } },
-    "午後" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "午後" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "PM" } }
-    } },
-    "備考欄" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "備考欄" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } }
-    } },
+    },
+    "System (システム)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System (システム)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "System (システム)"
+          }
+        }
+      }
+    },
+    "validator.asleepAfterAwake" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Fell asleep\" must be earlier than \"Woke up\""
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「眠った」は「目覚めた」より前である必要があります"
+          }
+        }
+      }
+    },
+    "validator.asleepBeforeBedIn" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Fell asleep\" must be at or after \"Got in bed\""
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「眠った」は「布団に入った」以降である必要があります"
+          }
+        }
+      }
+    },
+    "validator.asleepBeforeBedIn.withTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asleep time must be at or after bedtime (%@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入眠時刻は入床時刻（%@）以降にしてください"
+          }
+        }
+      }
+    },
+    "validator.awakeAfterBedOut" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Woke up\" must be at or before \"Got out of bed\""
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「目覚めた」は「布団から出た」以前である必要があります"
+          }
+        }
+      }
+    },
+    "validator.awakeAfterBedOut.withTime" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wake time must be at or before wake-up (%@)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覚醒時刻は起床時刻（%@)以前にしてください"
+          }
+        }
+      }
+    },
+    "validator.bedWindowInverted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Got in bed\" must be earlier than \"Got out of bed\""
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "「布団に入った」は「布団から出た」より前である必要があります"
+          }
+        }
+      }
+    },
+    "validator.wakeEventInverted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awakening end must be after start"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中途覚醒の終了時刻は開始時刻より後である必要があります"
+          }
+        }
+      }
+    },
+    "validator.wakeEventOutOfBounds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mid-sleep awakening must fall within the bed window"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中途覚醒の時刻は入床〜起床の範囲内に収めてください"
+          }
+        }
+      }
+    },
+    "validator.wakeEventOverlap" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mid-sleep awakenings cannot overlap"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中途覚醒の時間が他のイベントと重なっています"
+          }
+        }
+      }
+    },
+    "wake.elapsed.hoursMinutes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awake for %1$dh %2$dm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目覚めて %1$d時間%2$d分"
+          }
+        }
+      }
+    },
+    "wake.elapsed.minutes" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awake for %dm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目覚めて %d分"
+          }
+        }
+      }
+    },
+    "wake.elapsed.minutesUnder1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Awake for under 1m"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目覚めて 1分未満"
+          }
+        }
+      }
+    },
+    "wake.summary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wakes×%1$d (%2$dm)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覚醒×%1$d (%2$d分)"
+          }
+        }
+      }
+    },
+    "wake.summary.open" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wakes×%1$d (open)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覚醒×%1$d (進行中)"
+          }
+        }
+      }
+    },
+    "おはよう" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good morning"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おはよう"
+          }
+        }
+      }
+    },
+    "おやすみ" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good night"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おやすみ"
+          }
+        }
+      }
+    },
+    "キャンセル" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
+          }
+        }
+      }
+    },
+    "このアプリについて" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このアプリについて"
+          }
+        }
+      }
+    },
+    "この日の記録を削除" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete this day's record"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この日の記録を削除"
+          }
+        }
+      }
+    },
+    "この期間でプレビュー" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この期間でプレビュー"
+          }
+        }
+      }
+    },
+    "タップで入床時刻を記録" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to record bedtime"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タップで入床時刻を記録"
+          }
+        }
+      }
+    },
+    "タップで起床時刻を記録" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to record wake-up time"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "タップで起床時刻を記録"
+          }
+        }
+      }
+    },
+    "チャート" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chart"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "チャート"
+          }
+        }
+      }
+    },
+    "バージョン" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "バージョン"
+          }
+        }
+      }
+    },
+    "ホーム" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ホーム"
+          }
+        }
+      }
+    },
+    "メモ" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモ"
+          }
+        }
+      }
+    },
+    "中途覚醒" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mid-sleep awakenings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中途覚醒"
+          }
+        }
+      }
+    },
+    "何時頃に眠れましたか？" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About what time did you fall asleep?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "何時頃に眠れましたか？"
+          }
+        }
+      }
+    },
+    "何時頃目が覚めましたか？" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About what time did you wake up?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "何時頃目が覚めましたか？"
+          }
+        }
+      }
+    },
+    "保存" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
+          }
+        }
+      }
+    },
+    "備考" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備考"
+          }
+        }
+      }
+    },
+    "備考欄" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notes"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "備考欄"
+          }
+        }
+      }
+    },
+    "入床" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedtime"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入床"
+          }
+        }
+      }
+    },
+    "入床時刻" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedtime"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入床時刻"
+          }
+        }
+      }
+    },
+    "入床時刻の補完" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set Bedtime"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入床時刻の補完"
+          }
+        }
+      }
+    },
+    "入眠/覚醒時刻を確定" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm asleep/wake times"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入眠/覚醒時刻を確定"
+          }
+        }
+      }
+    },
+    "入眠時刻" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asleep time"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "入眠時刻"
+          }
+        }
+      }
+    },
+    "共有 / 保存" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share / Save"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有 / 保存"
+          }
+        }
+      }
+    },
+    "再び眠る" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back to sleep"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再び眠る"
+          }
+        }
+      }
+    },
+    "再起動が必要 / Restart Required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再起動が必要 / Restart Required"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再起動が必要 / Restart Required"
+          }
+        }
+      }
+    },
+    "出力期間" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date range"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "出力期間"
+          }
+        }
+      }
+    },
+    "午前" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AM"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "午前"
+          }
+        }
+      }
+    },
+    "午後" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PM"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "午後"
+          }
+        }
+      }
+    },
+    "印刷" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Print"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "印刷"
+          }
+        }
+      }
+    },
+    "夜中に目覚めた、寝つきが悪い、など" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woke up at night, trouble falling asleep, etc."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "夜中に目覚めた、寝つきが悪い、など"
+          }
+        }
+      }
+    },
+    "完了" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "完了"
+          }
+        }
+      }
+    },
+    "就寝中: %@ 〜" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In bed since %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "就寝中: %@ 〜"
+          }
+        }
+      }
+    },
+    "就寝時刻リマインダー" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedtime reminder"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "就寝時刻リマインダー"
+          }
+        }
+      }
+    },
+    "布団から出た" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got out of bed"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "布団から出た"
+          }
+        }
+      }
+    },
+    "布団に入った" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Got in bed"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "布団に入った"
+          }
+        }
+      }
+    },
+    "後で" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Later"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "後で"
+          }
+        }
+      }
+    },
+    "日本語" : {
 
-    "就寝時刻リマインダー" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "就寝時刻リマインダー" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Bedtime reminder" } }
-    } },
-    "通知を有効にする" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "通知を有効にする" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications" } }
-    } },
-    "通知時刻" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "通知時刻" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Notification time" } }
-    } },
-    "通知許可状態" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "通知許可状態" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Notification permission" } }
-    } },
-    "iCloud 同期" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "iCloud 同期" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "iCloud Sync" } }
-    } },
-    "iCloud で同期中" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "iCloud で同期中" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Syncing with iCloud" } }
-    } },
-    "iCloud アカウント未設定" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "iCloud アカウント未設定" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "iCloud account not configured" } }
-    } },
-    "「設定 > Apple ID > iCloud」でアカウントを有効にすると、データが iCloud に同期されます。" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「設定 > Apple ID > iCloud」でアカウントを有効にすると、データが iCloud に同期されます。" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable an account in Settings > Apple ID > iCloud to sync data with iCloud." } }
-    } },
-    "このアプリについて" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "このアプリについて" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } }
-    } },
-    "バージョン" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "バージョン" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } }
-    } },
-
-    "言語 / Language" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "言語 / Language" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "言語 / Language" } }
-    } },
-    "System (システム)" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "System (システム)" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "System (システム)" } }
-    } },
-    "再起動が必要 / Restart Required" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "再起動が必要 / Restart Required" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "再起動が必要 / Restart Required" } }
-    } },
-    "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change" } }
-    } },
-
-    "出力期間" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "出力期間" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Date range" } }
-    } },
-    "開始日" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "開始日" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Start date" } }
-    } },
-    "終了日" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "終了日" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "End date" } }
-    } },
-    "この期間でプレビュー" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "この期間でプレビュー" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Preview" } }
-    } },
-    "共有 / 保存" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "共有 / 保存" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Share / Save" } }
-    } },
-    "印刷" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "印刷" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Print" } }
-    } },
-    "生成中…" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "生成中…" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Generating…" } }
-    } },
-    "「プレビュー」を押して PDF を生成してください" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「プレビュー」を押して PDF を生成してください" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Tap Preview to generate the PDF" } }
-    } },
-    "PDF出力" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "PDF出力" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Export PDF" } }
-    } },
-
-    "validator.bedWindowInverted" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「布団に入った」は「布団から出た」より前である必要があります" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Got in bed\" must be earlier than \"Got out of bed\"" } }
-    } },
-    "validator.asleepBeforeBedIn" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「眠った」は「布団に入った」以降である必要があります" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Fell asleep\" must be at or after \"Got in bed\"" } }
-    } },
-    "validator.asleepBeforeBedIn.withTime" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "入眠時刻は入床時刻（%@）以降にしてください" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Asleep time must be at or after bedtime (%@)" } }
-    } },
-    "validator.awakeAfterBedOut" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「目覚めた」は「布団から出た」以前である必要があります" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Woke up\" must be at or before \"Got out of bed\"" } }
-    } },
-    "validator.awakeAfterBedOut.withTime" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒時刻は起床時刻（%@)以前にしてください" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wake time must be at or before wake-up (%@)" } }
-    } },
-    "validator.asleepAfterAwake" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "「眠った」は「目覚めた」より前である必要があります" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "\"Fell asleep\" must be earlier than \"Woke up\"" } }
-    } },
-    "validator.wakeEventOutOfBounds" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の時刻は入床〜起床の範囲内に収めてください" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakening must fall within the bed window" } }
-    } },
-    "validator.wakeEventOverlap" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の時間が他のイベントと重なっています" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakenings cannot overlap" } }
-    } },
-    "validator.wakeEventInverted" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の終了時刻は開始時刻より後である必要があります" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awakening end must be after start" } }
-    } },
-    "wake.summary" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒×%1$d (%2$d分)" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wakes×%1$d (%2$dm)" } }
-    } },
-    "wake.summary.open" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒×%1$d (進行中)" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wakes×%1$d (open)" } }
-    } },
-    "目覚めた" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めた" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Woke up" } }
-    } },
-    "再び眠る" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "再び眠る" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Back to sleep" } }
-    } },
-    "wake.elapsed.minutesUnder1" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて 1分未満" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for under 1m" } }
-    } },
-    "wake.elapsed.minutes" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて %d分" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for %dm" } }
-    } },
-    "wake.elapsed.hoursMinutes" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "目覚めて %1$d時間%2$d分" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Awake for %1$dh %2$dm" } }
-    } },
-    "中途覚醒" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Mid-sleep awakenings" } }
-    } },
-    "（なし）" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "（なし）" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "(none)" } }
-    } },
-    "追加" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "追加" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Add" } }
-    } },
-
-    "notification.bedtimeReminder.title" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "そろそろお休みの時間です" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Time to wind down" } }
-    } },
-    "notification.bedtimeReminder.body" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "おやすみ前にタップを忘れずに 🌙" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Don't forget to tap before bed 🌙" } }
-    } },
-
-    "pdf.title" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "睡眠リズム表" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Sleep Rhythm Chart" } }
-    } },
-    "pdf.period" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "期間: %1$@ 〜 %2$@" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Period: %1$@ – %2$@" } }
-    } },
-    "chart.am" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "午前" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "AM" } }
-    } },
-    "chart.pm" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "午後" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "PM" } }
-    } },
-    "chart.notes" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "備考欄" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } }
-    } },
-
-    "就寝中: %@ 〜" : { "extractionState" : "manual", "localizations" : {
-      "ja" : { "stringUnit" : { "state" : "translated", "value" : "就寝中: %@ 〜" } },
-      "en" : { "stringUnit" : { "state" : "translated", "value" : "In bed since %@" } }
-    } }
-  }
+    },
+    "昨夜の記録（編集可能）" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last night's record (editable)"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "昨夜の記録（編集可能）"
+          }
+        }
+      }
+    },
+    "昨夜は何時頃に布団に入りましたか？" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About what time did you go to bed last night?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "昨夜は何時頃に布団に入りましたか？"
+          }
+        }
+      }
+    },
+    "時刻" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Times"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時刻"
+          }
+        }
+      }
+    },
+    "生成中…" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generating…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "生成中…"
+          }
+        }
+      }
+    },
+    "目覚めた" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Woke up"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目覚めた"
+          }
+        }
+      }
+    },
+    "眠った" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fell asleep"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "眠った"
+          }
+        }
+      }
+    },
+    "確定" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確定"
+          }
+        }
+      }
+    },
+    "終了日" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End date"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "終了日"
+          }
+        }
+      }
+    },
+    "補正する" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "補正する"
+          }
+        }
+      }
+    },
+    "覚醒時刻" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wake time"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "覚醒時刻"
+          }
+        }
+      }
+    },
+    "言語 / Language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語 / Language"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語 / Language"
+          }
+        }
+      }
+    },
+    "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change"
+          }
+        }
+      }
+    },
+    "設定" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定"
+          }
+        }
+      }
+    },
+    "起床" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wake-up"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "起床"
+          }
+        }
+      }
+    },
+    "追加" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "追加"
+          }
+        }
+      }
+    },
+    "通知を有効にする" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enable notifications"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知を有効にする"
+          }
+        }
+      }
+    },
+    "通知時刻" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification time"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知時刻"
+          }
+        }
+      }
+    },
+    "通知許可状態" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification permission"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知許可状態"
+          }
+        }
+      }
+    },
+    "閉じる" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "閉じる"
+          }
+        }
+      }
+    },
+    "開始日" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start date"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開始日"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
 }

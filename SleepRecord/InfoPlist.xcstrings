@@ -4,16 +4,28 @@
     "CFBundleDisplayName" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Rhythm"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "睡眠リズム"
           }
-        },
-        "en" : {
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sleep Rhythm"
+            "state" : "new",
+            "value" : "SleepRecord"
           }
         }
       }

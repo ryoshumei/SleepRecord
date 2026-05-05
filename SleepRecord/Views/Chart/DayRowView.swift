@@ -12,6 +12,8 @@ struct DayRowView: View {
         HStack(spacing: 0) {
             Text(date, formatter: TimeFormatter.dateLabel)
                 .font(.caption2)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
                 .frame(width: dateLabelWidth, alignment: .trailing)
                 .padding(.trailing, 4)
 
