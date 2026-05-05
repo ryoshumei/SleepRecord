@@ -35,4 +35,7 @@ final class SleepSession {
 
     var isInProgress: Bool { bedOutAt == nil }
     var isFullyRecorded: Bool { bedOutAt != nil && asleepAt != nil && awakeAt != nil }
+
+    @Relationship(deleteRule: .cascade, inverse: \WakeEvent.session)
+    var wakeEvents: [WakeEvent] = []
 }

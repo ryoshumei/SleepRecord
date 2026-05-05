@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>中途覚醒 — Chart Mockup</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f3f3f5;
+    margin: 0;
+    padding: 24px;
+    color: #222;
+  }
+  h1 { font-size: 18px; margin: 0 0 4px 0; }
+  .subtitle { color: #666; font-size: 13px; margin-bottom: 20px; }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+  .legend .swatch {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    margin-right: 6px;
+    border: 1px solid #000;
+    background: #fff;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .legend .swatch.in-bed {
+    background: linear-gradient(to top, #E63946 0%, #E63946 50%, #fff 50%, #fff 100%);
+  }
+  .legend .swatch.asleep {
+    background:
+      repeating-linear-gradient(135deg, #000 0 1px, transparent 1px 4px) 0 0 / 100% 50% no-repeat,
+      linear-gradient(to top, #E63946 0%, #E63946 50%, #fff 50%, #fff 100%);
+  }
+  .legend .swatch.empty { background: #fff; }
+  .legend .item { display: flex; align-items: center; }
+
+  /* Chart table */
+  .chart {
+    background: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    overflow-x: auto;
+  }
+
+  table.grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 11px;
+  }
+
+  /* Column widths */
+  table.grid col.date { width: 60px; }
+  table.grid col.hour { width: 22px; }
+  table.grid col.notes { width: 130px; }
+
+  table.grid th, table.grid td {
+    border: 0.6px solid #000;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: normal;
+  }
+
+  /* Banner row */
+  table.grid tr.banner th {
+    height: 22px;
+    background: #ebebeb;
+    font-weight: 600;
+    font-size: 11px;
+  }
+  table.grid tr.banner th.spacer { background: transparent; border: none; }
+
+  /* Hour-numbers row */
+  table.grid tr.hours td {
+    height: 16px;
+    border: none;
+    color: #666;
+    font-size: 10px;
+  }
+  table.grid tr.hours td.spacer { background: transparent; }
+
+  /* Day rows */
+  table.grid tr.day td {
+    height: 26px;
+  }
+  table.grid tr.day td.date {
+    border-right: none;
+    padding: 0 6px;
+    text-align: right;
+    font-size: 11px;
+    color: #222;
+    font-weight: 500;
+  }
+  table.grid tr.day td.notes {
+    border-left: none;
+    padding: 2px 5px;
+    text-align: left;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  /* Cell layers — drawn via stacked CSS backgrounds on the <td> itself,
+     so we don't need child <div>s. Order matters: top layer first.        */
+  table.grid td.cell {
+    padding: 0;
+    background-color: #fff;
+  }
+  /* In-bed only: red bottom half, transparent top half */
+  table.grid td.cell.in-bed:not(.asleep) {
+    background-image: linear-gradient(
+      to top,
+      #E63946 0%, #E63946 50%, transparent 50%, transparent 100%
+    );
+  }
+  /* Asleep only (rare — out of bed but sleeping): hatched top half */
+  table.grid td.cell.asleep:not(.in-bed) {
+    background-image: repeating-linear-gradient(135deg, #000 0 1px, transparent 1px 4px);
+    background-size: 100% 50%;
+    background-position: top;
+    background-repeat: no-repeat;
+  }
+  /* Both: hatched top + red bottom (most common during normal sleep) */
+  table.grid td.cell.in-bed.asleep {
+    background-image:
+      repeating-linear-gradient(135deg, #000 0 1px, transparent 1px 4px),
+      linear-gradient(to top, #E63946 0%, #E63946 50%, transparent 50%, transparent 100%);
+    background-size: 100% 50%, 100% 100%;
+    background-position: top, top;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  /* AM/PM separator */
+  table.grid td.cell.h-12 { border-left: 1.5px solid #000; }
+
+  /* Notes summary */
+  .summary { color: #666; font-style: italic; font-size: 9.5px; }
+  .user-note { color: #222; font-size: 10px; }
+
+  /* Annotation text */
+  .annotation {
+    margin-top: 18px;
+    font-size: 12px;
+    color: #555;
+    line-height: 1.6;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .annotation code {
+    background: #eee;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 11px;
+  }
+</style>
+</head>
+<body>
+
+<h1>睡眠リズム表 — 中途覚醒 visualization mockup</h1>
+<div class="subtitle">
+  Each row shows how a mid-sleep awakening (<code>WakeEvent</code>) modifies the existing two-layer cell rule.
+  Mid-sleep awakening cells use the <strong>same visual treatment</strong> as "bookend" in-bed-awake cells — red bottom, no hatch — because they are the same physical state (in bed, not asleep). The wake-event distinction lives in the data model and the notes summary, not in the cell color.
+</div>
+
+<div class="legend">
+  <div class="item"><span class="swatch empty"></span>起きている (out of bed) / Awake</div>
+  <div class="item"><span class="swatch in-bed"></span>布団にいるが起きている / In bed, awake (bookend or mid-sleep)</div>
+  <div class="item"><span class="swatch asleep"></span>布団に入って眠っている / In bed, asleep</div>
+</div>
+
+<div class="chart">
+<table class="grid">
+  <colgroup>
+    <col class="date">
+    <col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour"><col class="hour">
+    <col class="notes">
+  </colgroup>
+
+  <!-- Banner row -->
+  <tr class="banner">
+    <th class="spacer"></th>
+    <th colspan="12">午前 / AM</th>
+    <th colspan="12">午後 / PM</th>
+    <th>備考欄 / Notes</th>
+  </tr>
+
+  <!-- Hour numbers row -->
+  <tr class="hours">
+    <td class="spacer"></td>
+    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td>
+    <td></td>
+  </tr>
+
+  <!-- 5/3 — Baseline: normal sleep, no awakenings -->
+  <tr class="day">
+    <td class="date">5/3 (土)</td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="cell h-12"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell in-bed"></td><td class="cell in-bed asleep"></td>
+    <td class="notes user-note">寝つき良好</td>
+  </tr>
+
+  <!-- 5/4 — One mid-sleep awakening 3:00-3:30 (hour 3) -->
+  <tr class="day">
+    <td class="date">5/4 (日)</td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td>
+    <!-- Hour 3: wake event ▼ marker on top of red bed bar -->
+    <td class="cell in-bed"></td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td>
+    <!-- Hour 7: bookend awake (no marker — this is the post-sleep bookend) -->
+    <td class="cell in-bed"></td>
+    <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="cell h-12"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell in-bed"></td><td class="cell in-bed asleep"></td>
+    <td class="notes">
+      <span class="summary">覚醒×1 (30分)</span><br>
+      <span class="user-note">夜中トイレ</span>
+    </td>
+  </tr>
+
+  <!-- 5/5 — Two awakenings: 1:00-1:15 and 4:00-4:45 -->
+  <tr class="day">
+    <td class="date">5/5 (月)</td>
+    <td class="cell in-bed asleep"></td>
+    <!-- Hour 1: wake (mid-sleep) -->
+    <td class="cell in-bed"></td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td>
+    <!-- Hour 4: wake (mid-sleep) -->
+    <td class="cell in-bed"></td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td>
+    <!-- Hour 7: bookend -->
+    <td class="cell in-bed"></td>
+    <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="cell h-12"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell in-bed"></td><td class="cell in-bed asleep"></td>
+    <td class="notes">
+      <span class="summary">覚醒×2 (60分)</span><br>
+      <span class="user-note">悪夢</span>
+    </td>
+  </tr>
+
+  <!-- 5/6 — Awakening still open (in-progress, current day) -->
+  <tr class="day">
+    <td class="date">5/6 (火)</td>
+    <td class="cell in-bed asleep"></td><td class="cell in-bed asleep"></td>
+    <td class="cell in-bed asleep"></td>
+    <!-- Hour 3: open wake event (3:00 → still awake at 3:42 "now") -->
+    <td class="cell in-bed"></td>
+    <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="cell h-12"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="notes">
+      <span class="summary">覚醒×1 (進行中)</span>
+    </td>
+  </tr>
+
+  <!-- Empty placeholder day -->
+  <tr class="day">
+    <td class="date">5/7 (水)</td>
+    <td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="cell h-12"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td><td class="cell"></td>
+    <td class="notes"></td>
+  </tr>
+</table>
+</div>
+
+<div class="annotation">
+  <strong>Cell rule (extended):</strong>
+  <ul style="margin: 8px 0;">
+    <li>Bottom red bar drawn iff <code>[bedInAt, bedOutAt]</code> overlaps the cell (unchanged)</li>
+    <li>Top diagonal hatch drawn iff <code>[asleepAt, awakeAt]</code> overlaps the cell <strong>AND</strong> no <code>WakeEvent</code> overlaps it</li>
+  </ul>
+  <strong>Cell visualization:</strong>
+  bookend awake-in-bed cells (e.g., lying awake at 5/4 hour 7 before getting up) and mid-sleep awakening cells (5/4 hour 3) <strong>look identical</strong> — both are red-only with no hatch — because they're the same physical state: in bed, not asleep.
+  The mid-sleep awakening signal lives in the <strong>notes column</strong>, not in the cell color.<br><br>
+  <strong>Notes column:</strong>
+  auto-prepends <code>覚醒×N (M分)</code> / <code>Wakes×N (Mm)</code> when there is at least one wake event, followed by the user's typed note on the next line. A doctor scanning a month of charts spots interrupted nights from the notes summary, and the chart row visually shows the interruptions as red gaps in the hatch.
+</div>
+
+</body>
+</html>
