@@ -45,6 +45,15 @@ struct ChartCellCalculator {
                 return s..<e
             }()
 
+            // Wake events: each closed event is [start, end); open events use
+            // [start, max(start, now)] so they show as red gaps for the
+            // in-progress day. Defensive guard prevents trapping ranges.
+            let wakeRanges: [Range<Date>] = session.wakeEvents.compactMap { e in
+                let end = e.endedAt ?? max(e.startedAt, .now)
+                guard e.startedAt < end else { return nil }
+                return e.startedAt..<end
+            }
+
             for hour in 0..<24 {
                 guard let cellStart = calendar.date(byAdding: .hour, value: hour, to: dayStart),
                       let cellEnd = calendar.date(byAdding: .hour, value: hour + 1, to: dayStart)
@@ -52,7 +61,10 @@ struct ChartCellCalculator {
                 let cellRange = cellStart..<cellEnd
 
                 let bedOverlap = rangesOverlap(bedRange, cellRange)
-                let sleepOverlap = sleepRange.map { rangesOverlap($0, cellRange) } ?? false
+                let sleepOverlapRaw = sleepRange.map { rangesOverlap($0, cellRange) } ?? false
+                let wakeOverlap = wakeRanges.contains { rangesOverlap($0, cellRange) }
+                let sleepOverlap = sleepOverlapRaw && !wakeOverlap
+
                 if bedOverlap || sleepOverlap {
                     cells[hour] = ChartCell(
                         inBed: cells[hour].inBed || bedOverlap,
@@ -74,13 +86,38 @@ struct ChartCellCalculator {
     func notes(forDay day: Date, sessions: [SleepSession]) -> String {
         let dayStart = calendar.startOfDay(for: day)
         guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else { return "" }
-        return sessions
+        let parts: [String] = sessions
             .filter { s in
-                guard !s.notes.isEmpty else { return false }
                 let anchor = s.bedOutAt ?? s.bedInAt
                 return anchor >= dayStart && anchor < dayEnd
             }
-            .map(\.notes)
-            .joined(separator: " / ")
+            .map { s in
+                var pieces: [String] = []
+                if !s.wakeEvents.isEmpty {
+                    pieces.append(Self.wakeSummary(for: s.wakeEvents))
+                }
+                if !s.notes.isEmpty {
+                    pieces.append(s.notes)
+                }
+                return pieces.joined(separator: " ")
+            }
+            .filter { !$0.isEmpty }
+        return parts.joined(separator: " / ")
+    }
+
+    private static func wakeSummary(for events: [WakeEvent]) -> String {
+        let count = events.count
+        let hasOpen = events.contains { $0.isOpen }
+        if hasOpen {
+            return String(
+                localized: "wake.summary.open",
+                defaultValue: "覚醒×\(count) (進行中)"
+            )
+        }
+        let totalMin = events.reduce(0) { acc, e in acc + (e.durationMinutes ?? 0) }
+        return String(
+            localized: "wake.summary",
+            defaultValue: "覚醒×\(count) (\(totalMin)分)"
+        )
     }
 }

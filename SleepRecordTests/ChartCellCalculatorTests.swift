@@ -178,4 +178,71 @@ final class ChartCellCalculatorTests: XCTestCase {
         XCTAssertTrue(cells[23].inBed)
         XCTAssertFalse(cells[23].asleep)
     }
+
+    // MARK: wake events
+
+    func testCells_WakeEventSuppressesAsleep() {
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 4, 23, 0),
+            bedOutAt: date(2026, 5, 5, 7, 0),
+            asleepAt: date(2026, 5, 4, 23, 30),
+            awakeAt: date(2026, 5, 5, 6, 30)
+        )
+        // 3:00–3:30 wake event — hour 3 cell should be in-bed but NOT asleep.
+        let event = WakeEvent(
+            startedAt: date(2026, 5, 5, 3, 0),
+            endedAt: date(2026, 5, 5, 3, 30),
+            session: s
+        )
+        s.wakeEvents = [event]
+
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let cells = calc.cells(forDay: date(2026, 5, 5, 0, 0), sessions: [s])
+
+        XCTAssertTrue(cells[3].inBed)
+        XCTAssertFalse(cells[3].asleep, "wake event should suppress asleep on hour 3")
+        XCTAssertTrue(cells[2].inBed)
+        XCTAssertTrue(cells[2].asleep)
+    }
+
+    func testCells_MultipleWakeEvents() {
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 4, 23, 0),
+            bedOutAt: date(2026, 5, 5, 7, 0),
+            asleepAt: date(2026, 5, 4, 23, 30),
+            awakeAt: date(2026, 5, 5, 6, 30)
+        )
+        s.wakeEvents = [
+            WakeEvent(startedAt: date(2026, 5, 5, 1, 0),
+                      endedAt:   date(2026, 5, 5, 1, 15), session: s),
+            WakeEvent(startedAt: date(2026, 5, 5, 4, 0),
+                      endedAt:   date(2026, 5, 5, 4, 45), session: s)
+        ]
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let cells = calc.cells(forDay: date(2026, 5, 5, 0, 0), sessions: [s])
+
+        XCTAssertFalse(cells[1].asleep)
+        XCTAssertFalse(cells[4].asleep)
+        XCTAssertTrue(cells[3].asleep, "no event in hour 3 — should still be asleep")
+        XCTAssertTrue(cells[2].asleep, "no event in hour 2")
+    }
+
+    func testNotes_PrependsSummary() {
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 4, 23, 0),
+            bedOutAt: date(2026, 5, 5, 7, 0),
+            asleepAt: date(2026, 5, 4, 23, 30),
+            awakeAt: date(2026, 5, 5, 6, 30),
+            notes: "夜中トイレ"
+        )
+        s.wakeEvents = [
+            WakeEvent(startedAt: date(2026, 5, 5, 3, 0),
+                      endedAt:   date(2026, 5, 5, 3, 30), session: s)
+        ]
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let result = calc.notes(forDay: date(2026, 5, 5, 0, 0), sessions: [s])
+        XCTAssertTrue(result.contains("覚醒×1") || result.contains("Wakes×1"))
+        XCTAssertTrue(result.contains("30"), "summary should mention 30 minutes")
+        XCTAssertTrue(result.contains("夜中トイレ"))
+    }
 }

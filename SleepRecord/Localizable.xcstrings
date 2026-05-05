@@ -294,6 +294,14 @@
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "中途覚醒の終了時刻は開始時刻より後である必要があります" } },
       "en" : { "stringUnit" : { "state" : "translated", "value" : "Awakening end must be after start" } }
     } },
+    "wake.summary" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒×%1$d (%2$d分)" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wakes×%1$d (%2$dm)" } }
+    } },
+    "wake.summary.open" : { "extractionState" : "manual", "localizations" : {
+      "ja" : { "stringUnit" : { "state" : "translated", "value" : "覚醒×%1$d (進行中)" } },
+      "en" : { "stringUnit" : { "state" : "translated", "value" : "Wakes×%1$d (open)" } }
+    } },
 
     "notification.bedtimeReminder.title" : { "extractionState" : "manual", "localizations" : {
       "ja" : { "stringUnit" : { "state" : "translated", "value" : "そろそろお休みの時間です" } },
