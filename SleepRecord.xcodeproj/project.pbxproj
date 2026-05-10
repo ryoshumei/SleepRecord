@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -81,7 +81,7 @@
 		A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepRecordApp.swift; sourceTree = "<group>"; };
 		AA97923E363E5CB6D937BE86 /* MorningCorrectionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningCorrectionSheet.swift; sourceTree = "<group>"; };
 		ACAD35CBE6DC26544F42A972 /* DayRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayRowView.swift; sourceTree = "<group>"; };
-		AE9C5764F124623D827FE9F3 /* SleepRecord.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SleepRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE9C5764F124623D827FE9F3 /* SleepRecord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepRecord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDE2C03EA2A11EBDCA920329 /* DateRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateRange.swift; sourceTree = "<group>"; };
 		CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEditSheet.swift; sourceTree = "<group>"; };
 		D1CF03DB194829E95A3D2F23 /* BackfillDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackfillDetector.swift; sourceTree = "<group>"; };
@@ -270,11 +270,10 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					BBFBCFFA18C467F2808EC14C = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 					FF5BE7CE8B50F2388D0F86F1 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = YFN535JPUP;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -290,7 +289,6 @@
 			);
 			mainGroup = 9C8F684C527AF6C71734FF2D;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -404,8 +402,9 @@
 				CODE_SIGN_ENTITLEMENTS = SleepRecord/SleepRecord.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YFN535JPUP;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -419,9 +418,10 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SleepRecord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.sleeprecord;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ryoshumei.sleeprecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
@@ -437,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = YFN535JPUP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SleepRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = YFN535JPUP;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = SleepRecord/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -530,8 +532,9 @@
 				CODE_SIGN_ENTITLEMENTS = SleepRecord/SleepRecord.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = YFN535JPUP;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -551,10 +554,11 @@
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = SleepRecord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.sleeprecord;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ryoshumei.sleeprecord;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;

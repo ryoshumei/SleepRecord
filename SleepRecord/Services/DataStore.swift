@@ -40,7 +40,7 @@ enum DataStore {
             "Cloud",
             schema: schema,
             isStoredInMemoryOnly: false,
-            cloudKitDatabase: .private("iCloud.com.ryan.sleeprecord")
+            cloudKitDatabase: .private("iCloud.io.github.ryoshumei.sleeprecord")
         )
         return try ModelContainer(for: schema, configurations: [config])
     }
