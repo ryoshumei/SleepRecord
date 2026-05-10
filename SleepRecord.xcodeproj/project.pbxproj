@@ -17,6 +17,7 @@
 		49380C98178C743EABD36550 /* NotificationScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */; };
 		4F3E270ED804AD51F47F1733 /* SleepRecordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873C825485B7016281FC1955 /* SleepRecordValidator.swift */; };
 		5A65B86ACBBB4917236E7C2D /* SleepRecordValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45455E5738912ABCE8CC941 /* SleepRecordValidatorTests.swift */; };
+		6715E01EC49F09221AE04AE7 /* SeedDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631BDB49CBB5BB523373FFDD /* SeedDataService.swift */; };
 		6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FFB4ECB066080ABA29411A /* SleepRecordApp.swift */; };
 		763C8F344DCEB7BBC44BC7EC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140AC78B000DC1EB63589712 /* DataStore.swift */; };
 		7CE289E42508E3AC260FF708 /* DayEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD90D5451E846AA0CF8CE6C /* DayEditSheet.swift */; };
@@ -68,6 +69,7 @@
 		4E2D507B8F100C095144024F /* LanguagePreferenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePreferenceTests.swift; sourceTree = "<group>"; };
 		534C79F8D2D473855F83EFDD /* LanguagePreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePreference.swift; sourceTree = "<group>"; };
 		54B95ACEDD73096C6D2BF11B /* TimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
+		631BDB49CBB5BB523373FFDD /* SeedDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeedDataService.swift; sourceTree = "<group>"; };
 		67521FA096773EE9254C2399 /* PDFExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExportView.swift; sourceTree = "<group>"; };
 		6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepStateMachine.swift; sourceTree = "<group>"; };
 		75EF0DEB7341698EB3E0DFB8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				534C79F8D2D473855F83EFDD /* LanguagePreference.swift */,
 				17DE502F21DCDD0145019ED9 /* NotificationScheduler.swift */,
 				933EF3115902D0D3484B1275 /* PDFExporter.swift */,
+				631BDB49CBB5BB523373FFDD /* SeedDataService.swift */,
 				873C825485B7016281FC1955 /* SleepRecordValidator.swift */,
 				6D25D64AC8A1C7EEC98C87AE /* SleepStateMachine.swift */,
 			);
@@ -347,6 +350,7 @@
 				8C8F14F325D98BFF60833120 /* PDFExportView.swift in Sources */,
 				EBA4FE15BD1BF992F105B0DD /* PDFExporter.swift in Sources */,
 				CBA301F556116889AF1EB9F2 /* PDFPreviewView.swift in Sources */,
+				6715E01EC49F09221AE04AE7 /* SeedDataService.swift in Sources */,
 				3714E5DD51179247E0D436E2 /* SettingsView.swift in Sources */,
 				6B4E2AE85886D3E3B90A536F /* SleepRecordApp.swift in Sources */,
 				4F3E270ED804AD51F47F1733 /* SleepRecordValidator.swift in Sources */,

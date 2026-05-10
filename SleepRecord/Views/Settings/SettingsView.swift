@@ -1,8 +1,10 @@
 import SwiftUI
+import SwiftData
 import UserNotifications
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     @AppStorage("bedtimeReminderEnabled") private var reminderEnabled = true
     @AppStorage("bedtimeReminderHour") private var reminderHour = 22
     @AppStorage("bedtimeReminderMinute") private var reminderMinute = 30
@@ -68,6 +70,17 @@ struct SettingsView: View {
                 Section("このアプリについて") {
                     HStack { Text("バージョン"); Spacer(); Text("1.0.0").foregroundStyle(.secondary) }
                 }
+
+                #if DEBUG
+                Section("Debug (screenshot tools)") {
+                    Button("Seed 30 days of demo data") {
+                        SeedDataService.populate(context: modelContext)
+                    }
+                    Button("Clear all data", role: .destructive) {
+                        SeedDataService.clear(context: modelContext)
+                    }
+                }
+                #endif
             }
             .alert(
                 "再起動が必要 / Restart Required",
