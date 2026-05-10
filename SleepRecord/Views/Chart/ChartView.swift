@@ -117,6 +117,19 @@ struct ChartView: View {
                                 withAnimation { proxy.scrollTo(target, anchor: .bottom) }
                             }
                         }
+                        #if DEBUG
+                        let args = CommandLine.arguments
+                        if args.contains("-presentPDFExport") {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) { showPDFExport = true }
+                        }
+                        if args.contains("-presentDayEdit") {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                                let today = calendar.startOfDay(for: .now)
+                                let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
+                                selectedDay = yesterday ?? monthDays.last(where: { $0 < today })
+                            }
+                        }
+                        #endif
                     }
                 }
             }

@@ -72,12 +72,14 @@ struct SettingsView: View {
                 }
 
                 #if DEBUG
-                Section("Debug (screenshot tools)") {
-                    Button("Seed 30 days of demo data") {
-                        SeedDataService.populate(context: modelContext)
-                    }
-                    Button("Clear all data", role: .destructive) {
-                        SeedDataService.clear(context: modelContext)
+                if !CommandLine.arguments.contains("-hideDebugUI") {
+                    Section("Debug (screenshot tools)") {
+                        Button("Seed 30 days of demo data") {
+                            SeedDataService.populate(context: modelContext)
+                        }
+                        Button("Clear all data", role: .destructive) {
+                            SeedDataService.clear(context: modelContext)
+                        }
                     }
                 }
                 #endif

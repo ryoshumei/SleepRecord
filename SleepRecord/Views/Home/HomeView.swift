@@ -89,7 +89,14 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showSettings) { SettingsView() }
             .onReceive(timer) { now = $0 }
-            .onAppear { autoPresentCorrectionIfNeeded() }
+            .onAppear {
+                autoPresentCorrectionIfNeeded()
+                #if DEBUG
+                if CommandLine.arguments.contains("-presentSettings") {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { showSettings = true }
+                }
+                #endif
+            }
         }
     }
 
