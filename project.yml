@@ -26,6 +26,7 @@ targets:
     settings:
       base:
         ENABLE_PREVIEWS: YES
+        TARGETED_DEVICE_FAMILY: '1'
   SleepRecordTests:
     type: bundle.unit-test
     platform: iOS
