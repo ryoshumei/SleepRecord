@@ -46,7 +46,7 @@
 ### 8. お問い合わせ
 
 ご不明な点がございましたら、以下までご連絡ください。
-- Email: s419922572@gmail.com
+- Email: ryoshumei@gmail.com
 - GitHub Issues: https://github.com/ryoshumei/SleepRecord/issues
 
 ---
@@ -93,5 +93,5 @@ This policy may change without notice. Changes become effective the moment they 
 ### 8. Contact
 
 For questions, please contact:
-- Email: s419922572@gmail.com
+- Email: ryoshumei@gmail.com
 - GitHub Issues: https://github.com/ryoshumei/SleepRecord/issues
