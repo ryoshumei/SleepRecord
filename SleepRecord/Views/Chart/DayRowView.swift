@@ -50,7 +50,6 @@ private struct CellView: View {
 
     var body: some View {
         ZStack {
-            Rectangle().stroke(Color.black, lineWidth: 0.4)
             VStack(spacing: 0) {
                 ZStack {
                     Rectangle().fill(.white)
@@ -60,6 +59,8 @@ private struct CellView: View {
                 }
                 Rectangle().fill(cell.inBed ? Color(red: 0.9, green: 0.22, blue: 0.27) : .white)
             }
+            .clipped()
+            Rectangle().stroke(Color.black, lineWidth: 0.4)
         }
     }
 }
