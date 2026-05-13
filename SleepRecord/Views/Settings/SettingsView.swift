@@ -5,7 +5,7 @@ import UserNotifications
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @AppStorage("bedtimeReminderEnabled") private var reminderEnabled = true
+    @AppStorage("bedtimeReminderEnabled") private var reminderEnabled = false
     @AppStorage("bedtimeReminderHour") private var reminderHour = 22
     @AppStorage("bedtimeReminderMinute") private var reminderMinute = 30
 
