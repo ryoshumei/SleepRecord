@@ -7,6 +7,11 @@ import SwiftData
 enum SeedDataService {
     static func populate(context: ModelContext, calendar: Calendar = .current) {
         clear(context: context)
+        let inProgress = CommandLine.arguments.contains("-seedInProgress")
+        if inProgress {
+            let bedIn = Date().addingTimeInterval(-3600) // 1h ago
+            context.insert(SleepSession(bedInAt: bedIn))
+        }
 
         let now = Date()
         let startOfToday = calendar.startOfDay(for: now)
