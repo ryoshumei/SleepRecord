@@ -22,7 +22,13 @@ struct ChartCellCalculator {
 
     /// Returns 24 cells (one per hour 0..23) for the given day in the configured timezone.
     /// Rule: any-overlap = mark cell.
-    func cells(forDay day: Date, sessions: [SleepSession]) -> [ChartCell] {
+    /// `now` caps in-progress sessions (bedOutAt == nil) so future hours/days don't
+    /// paint as in-bed. Defaults to .now; tests inject a deterministic value.
+    func cells(
+        forDay day: Date,
+        sessions: [SleepSession],
+        now: Date = .now
+    ) -> [ChartCell] {
         let dayStart = calendar.startOfDay(for: day)
         guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else {
             return Array(repeating: .empty, count: 24)
@@ -36,7 +42,15 @@ struct ChartCellCalculator {
             // this day at all (bedInAt > dayEnd), or (b) user data is out of order
             // (e.g., correction sheet defaults make asleepAt > awakeAt for very short
             // sessions). Skip such ranges instead of crashing.
-            let bedEnd = session.bedOutAt ?? dayEnd
+            //
+            // For in-progress sessions (bedOutAt == nil), cap the upper bound at
+            // .now so we don't paint future hours red. Without this, an open
+            // session paints every cell on the current day AND every subsequent
+            // day red until the user taps おはよう.
+            let bedEnd: Date = {
+                if let out = session.bedOutAt { return out }
+                return min(now, dayEnd)
+            }()
             guard session.bedInAt < bedEnd else { continue }
             let bedRange = session.bedInAt..<bedEnd
 
@@ -49,7 +63,7 @@ struct ChartCellCalculator {
             // [start, max(start, now)] so they show as red gaps for the
             // in-progress day. Defensive guard prevents trapping ranges.
             let wakeRanges: [Range<Date>] = session.wakeEvents.compactMap { e in
-                let end = e.endedAt ?? max(e.startedAt, .now)
+                let end = e.endedAt ?? max(e.startedAt, now)
                 guard e.startedAt < end else { return nil }
                 return e.startedAt..<end
             }

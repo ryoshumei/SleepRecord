@@ -51,15 +51,9 @@ struct HomeView: View {
 
                     if case .inBed = state {
                         if SleepStateMachine.isAwakeMidSleep(activeSession: activeSession) {
-                            Button("☀️ おはよう") { tapMorning() }
-                                .font(.footnote)
-                                .foregroundStyle(.white.opacity(0.85))
-                                .padding(.top, 32)
+                            secondaryActionButton(title: "☀️ おはよう", action: tapMorning)
                         } else {
-                            Button("🌗 目覚めた") { tapWokeUp() }
-                                .font(.footnote)
-                                .foregroundStyle(.white.opacity(0.85))
-                                .padding(.top, 32)
+                            secondaryActionButton(title: "🌗 目覚めた", action: tapWokeUp)
                         }
                     }
 
@@ -98,6 +92,26 @@ struct HomeView: View {
                 #endif
             }
         }
+    }
+
+    private func secondaryActionButton(
+        title: LocalizedStringKey,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 28)
+                .padding(.vertical, 12)
+                .background(
+                    Capsule().fill(Color.white.opacity(0.16))
+                )
+                .overlay(
+                    Capsule().stroke(Color.white.opacity(0.45), lineWidth: 1)
+                )
+        }
+        .padding(.top, 32)
     }
 
     @ViewBuilder

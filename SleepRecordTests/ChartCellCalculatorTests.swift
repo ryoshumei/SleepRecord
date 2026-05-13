@@ -46,9 +46,55 @@ final class ChartCellCalculatorTests: XCTestCase {
     func testInProgressSession() {
         let s = SleepSession(bedInAt: date(2026, 5, 4, 23, 30))
         let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
-        let cells = calc.cells(forDay: date(2026, 5, 4, 0), sessions: [s])
+        // .now is at 5/5 02:00 — between bedIn (5/4 23:30) and end of 5/4 (24:00).
+        let now = date(2026, 5, 5, 2, 0)
+        let cells = calc.cells(forDay: date(2026, 5, 4, 0), sessions: [s], now: now)
         XCTAssertTrue(cells[23].inBed)
         XCTAssertFalse(cells[23].asleep)
+    }
+
+    func testInProgressSession_DoesNotPaintFutureDays() {
+        // Regression: an open session used to paint every cell on every
+        // subsequent day red because bedEnd defaulted to dayEnd of each
+        // iteration. Now it caps at `now`, so days after `now` stay empty.
+        let s = SleepSession(bedInAt: date(2026, 5, 13, 23, 29))
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let now = date(2026, 5, 13, 23, 30)   // user is in bed right now
+
+        // Same day cells 0..22 empty, 23 in-bed
+        let day13 = calc.cells(forDay: date(2026, 5, 13, 0), sessions: [s], now: now)
+        XCTAssertTrue(day13[23].inBed)
+        for h in 0..<23 { XCTAssertFalse(day13[h].inBed, "hour \(h) on bed-day shouldn't be in bed") }
+
+        // All future days completely empty — this was the bug
+        for offset in 1...18 {
+            let day = calc.cells(
+                forDay: date(2026, 5, 13 + offset, 0),
+                sessions: [s],
+                now: now
+            )
+            XCTAssertTrue(
+                day.allSatisfy { !$0.inBed && !$0.asleep },
+                "day +\(offset) should be empty, but at least one cell is in-bed"
+            )
+        }
+    }
+
+    func testInProgressSession_PaintsHoursUpToNow() {
+        // User went to bed at 23:30 on 5/13; it's now 02:00 on 5/14 and they
+        // haven't tapped おはよう yet. Expect hour 23 of 5/13 + hours 0,1 of
+        // 5/14 to be in-bed; hour 2 and beyond of 5/14 should be clear.
+        let s = SleepSession(bedInAt: date(2026, 5, 13, 23, 30))
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let now = date(2026, 5, 14, 2, 0)
+
+        let day14 = calc.cells(forDay: date(2026, 5, 14, 0), sessions: [s], now: now)
+        XCTAssertTrue(day14[0].inBed)
+        XCTAssertTrue(day14[1].inBed)
+        XCTAssertFalse(day14[2].inBed, "hour 2 is after .now — should not be in-bed")
+        for h in 3..<24 {
+            XCTAssertFalse(day14[h].inBed, "hour \(h) is after .now — should not be in-bed")
+        }
     }
 
     func testMultipleSessionsSameDay() {

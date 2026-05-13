@@ -107,7 +107,10 @@ struct ChartView: View {
                             }
                         }
                         .padding(.bottom, 12)
+                        .background(Color.white)
                     }
+                    .background(Color.white)
+                    .environment(\.colorScheme, .light)
                     .onAppear {
                         // Scroll to today (or last day of month if today isn't in view) so
                         // the user lands on the most recent date without manual scrolling.
