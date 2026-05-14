@@ -24,3 +24,6 @@ Carthage/Build/
 build/
 DerivedData/
 screenshots/raw/
+
+# Zenn article drafts (not part of the iOS app)
+articles/
