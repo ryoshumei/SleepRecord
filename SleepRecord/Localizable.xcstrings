@@ -69,8 +69,28 @@
         }
       }
     },
+    "「設定」アプリでこのアプリの通知を許可してください\nEnable notifications for this app in the Settings app" : {
+
+    },
     "%@" : {
 
+    },
+    "☀️ おはよう" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ Good morning"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "☀️ おはよう"
+          }
+        }
+      }
     },
     "☀️ おはようございます" : {
       "extractionState" : "manual",
@@ -88,9 +108,6 @@
           }
         }
       }
-    },
-    "1.0.0" : {
-
     },
     "chart.am" : {
       "extractionState" : "manual",
@@ -1253,6 +1270,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "目覚めた"
+          }
+        }
+      }
+    },
+    "🌗 目覚めた" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌗 Woke up"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🌗 目覚めた"
           }
         }
       }

@@ -20,8 +20,9 @@ struct NotificationScheduler {
         }
     }
 
-    static func scheduleBedtimeReminder(at hour: Int, minute: Int) async {
-        guard await requestAuthorizationIfNeeded() else { return }
+    @discardableResult
+    static func scheduleBedtimeReminder(at hour: Int, minute: Int) async -> Bool {
+        guard await requestAuthorizationIfNeeded() else { return false }
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: [bedtimeReminderID])
 
@@ -47,6 +48,7 @@ struct NotificationScheduler {
             trigger: trigger
         )
         try? await center.add(request)
+        return true
     }
 
     static func cancelBedtimeReminder() {

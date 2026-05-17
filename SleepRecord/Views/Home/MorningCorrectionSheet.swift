@@ -114,6 +114,14 @@ struct MorningCorrectionSheet: View {
                     TextField("夜中に目覚めた、寝つきが悪い、など", text: $notes, axis: .vertical)
                         .lineLimit(3...6)
                 }
+
+                Section {
+                    Button("この日の記録を削除", role: .destructive) {
+                        modelContext.delete(session)
+                        try? modelContext.save()
+                        dismiss()
+                    }
+                }
             }
             .navigationTitle("☀️ おはようございます")
             .navigationBarTitleDisplayMode(.inline)

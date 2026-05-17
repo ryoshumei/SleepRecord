@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UIKit
 import UserNotifications
 
 struct SettingsView: View {
@@ -13,6 +14,7 @@ struct SettingsView: View {
     @State private var iCloudAvailable: Bool = FileManager.default.ubiquityIdentityToken != nil
     @State private var languagePref = LanguagePreference.shared
     @State private var showLanguageRestartAlert = false
+    @State private var showPermissionDeniedAlert = false
 
     var body: some View {
         NavigationStack {
@@ -68,7 +70,7 @@ struct SettingsView: View {
                 }
 
                 Section("このアプリについて") {
-                    HStack { Text("バージョン"); Spacer(); Text("1.0.0").foregroundStyle(.secondary) }
+                    HStack { Text("バージョン"); Spacer(); Text(appVersion).foregroundStyle(.secondary) }
                 }
 
                 #if DEBUG
@@ -92,6 +94,19 @@ struct SettingsView: View {
             } message: {
                 Text("言語を変更するにはアプリを再起動してください\nRestart the app to apply the language change")
             }
+            .alert(
+                "通知が許可されていません / Notifications Disabled",
+                isPresented: $showPermissionDeniedAlert
+            ) {
+                Button("設定を開く / Open Settings") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                Button("キャンセル / Cancel", role: .cancel) { }
+            } message: {
+                Text("「設定」アプリでこのアプリの通知を許可してください\nEnable notifications for this app in the Settings app")
+            }
             .navigationTitle("設定")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) { Button("完了") { dismiss() } }
@@ -107,11 +122,21 @@ struct SettingsView: View {
         return Calendar.current.date(from: comps) ?? .now
     }
 
+    private var appVersion: String {
+        let short = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "—"
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "—"
+        return "\(short) (\(build))"
+    }
+
     private func applyReminder(enabled: Bool) async {
         if enabled {
-            await NotificationScheduler.scheduleBedtimeReminder(
+            let granted = await NotificationScheduler.scheduleBedtimeReminder(
                 at: reminderHour, minute: reminderMinute
             )
+            if !granted {
+                reminderEnabled = false
+                showPermissionDeniedAlert = true
+            }
         } else {
             NotificationScheduler.cancelBedtimeReminder()
         }

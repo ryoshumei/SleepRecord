@@ -61,7 +61,7 @@ struct ChartView: View {
                     }
                 }
                 .frame(height: 12)
-                Color.clear.frame(width: notesWidth)
+                Color.clear.frame(width: notesWidth + 4)
             }
         }
     }
