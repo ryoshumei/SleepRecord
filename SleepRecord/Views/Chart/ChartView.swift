@@ -6,7 +6,7 @@ struct ChartView: View {
     @Query(sort: \SleepSession.bedInAt, order: .reverse) private var sessions: [SleepSession]
 
     @State private var displayedMonth: Date = Calendar.current.startOfMonth(for: .now)
-    @State private var selectedDay: Date?
+    @State private var editTarget: EditTarget?
     @State private var showPDFExport = false
 
     private let calendar = Calendar.current
@@ -89,20 +89,16 @@ struct ChartView: View {
                                 .padding(.top, 4)
 
                             ForEach(monthDays, id: \.self) { day in
-                                Button {
-                                    selectedDay = day
-                                } label: {
-                                    DayRowView(
-                                        date: day,
-                                        cells: calc.cells(forDay: day, sessions: sessions),
-                                        notes: calc.notes(forDay: day, sessions: sessions),
-                                        dateLabelWidth: dateLabelWidth,
-                                        notesWidth: notesWidth,
-                                        rowHeight: 24
-                                    )
-                                    .padding(.horizontal, 8)
-                                }
-                                .buttonStyle(.plain)
+                                DayRowView(
+                                    date: day,
+                                    cells: calc.cells(forDay: day, sessions: sessions),
+                                    notes: calc.notes(forDay: day, sessions: sessions),
+                                    dateLabelWidth: dateLabelWidth,
+                                    notesWidth: notesWidth,
+                                    rowHeight: 24,
+                                    onTap: { hour in openEditor(day: day, hour: hour) }
+                                )
+                                .padding(.horizontal, 8)
                                 .id(day)
                             }
                         }
@@ -129,7 +125,9 @@ struct ChartView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                                 let today = calendar.startOfDay(for: .now)
                                 let yesterday = calendar.date(byAdding: .day, value: -1, to: today)
-                                selectedDay = yesterday ?? monthDays.last(where: { $0 < today })
+                                if let day = yesterday ?? monthDays.last(where: { $0 < today }) {
+                                    openEditor(day: day, hour: nil)
+                                }
                             }
                         }
                         #endif
@@ -145,11 +143,8 @@ struct ChartView: View {
                     }
                 }
             }
-            .sheet(item: Binding(
-                get: { selectedDay.map { DayWrapper(date: $0) } },
-                set: { selectedDay = $0?.date }
-            )) { wrapped in
-                DayEditSheet(date: wrapped.date)
+            .sheet(item: $editTarget) { target in
+                DayEditSheet(date: target.date, existing: target.session)
             }
             .sheet(isPresented: $showPDFExport) {
                 PDFExportView()
@@ -174,11 +169,21 @@ struct ChartView: View {
             displayedMonth = calendar.startOfMonth(for: d)
         }
     }
+
+    /// Edits the session drawn where the row was tapped (`hour` is nil for a
+    /// tap outside the grid), or starts a new record if the day is empty.
+    private func openEditor(day: Date, hour: Int?) {
+        editTarget = EditTarget(
+            date: day,
+            session: ChartCellCalculator().session(forDay: day, hour: hour, sessions: sessions)
+        )
+    }
 }
 
-private struct DayWrapper: Identifiable {
+private struct EditTarget: Identifiable {
+    let id = UUID()
     let date: Date
-    var id: Date { date }
+    let session: SleepSession?
 }
 
 extension Calendar {

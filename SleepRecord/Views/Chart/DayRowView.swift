@@ -7,6 +7,9 @@ struct DayRowView: View {
     let dateLabelWidth: CGFloat
     let notesWidth: CGFloat
     let rowHeight: CGFloat
+    /// Called with the tapped hour cell (0..<24), or nil for a tap on the date
+    /// label or notes column.
+    let onTap: (Int?) -> Void
 
     var body: some View {
         HStack(spacing: 0) {
@@ -30,6 +33,12 @@ struct DayRowView: View {
                         .frame(width: 1.5, height: rowHeight)
                         .offset(x: w * 12)
                 }
+                .contentShape(Rectangle())
+                .onTapGesture { location in
+                    // Report which hour was tapped so a day with several
+                    // sleep blocks opens the block under the finger.
+                    onTap(w > 0 ? min(23, max(0, Int(location.x / w))) : nil)
+                }
             }
             .frame(height: rowHeight)
 
@@ -42,6 +51,11 @@ struct DayRowView: View {
                 .padding(.leading, 4)
                 .overlay(Rectangle().stroke(Color.black, lineWidth: 0.4))
         }
+        .contentShape(Rectangle())
+        .onTapGesture { onTap(nil) }
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction { onTap(nil) }
     }
 }
 

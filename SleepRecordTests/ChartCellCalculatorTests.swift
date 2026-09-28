@@ -291,4 +291,117 @@ final class ChartCellCalculatorTests: XCTestCase {
         XCTAssertTrue(result.contains("30"), "summary should mention 30 minutes")
         XCTAssertTrue(result.contains("夜中トイレ"))
     }
+
+    // MARK: session(forDay:hour:sessions:) — which record a row tap opens
+
+    func testTapSession_OpensTheTappedBlock() {
+        // Regression: a row with a night's sleep and a nap always opened the
+        // same record, so the second block could never be edited.
+        let night = SleepSession(
+            bedInAt: date(2026, 5, 14, 3, 0),
+            bedOutAt: date(2026, 5, 14, 9, 0)
+        )
+        let nap = SleepSession(
+            bedInAt: date(2026, 5, 14, 14, 0),
+            bedOutAt: date(2026, 5, 14, 17, 0)
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let day = date(2026, 5, 14, 0)
+        // ChartView's @Query is newest-first; input order must not matter.
+        let sessions = [nap, night]
+
+        XCTAssertIdentical(calc.session(forDay: day, hour: 15, sessions: sessions), nap)
+        XCTAssertIdentical(calc.session(forDay: day, hour: 4, sessions: sessions), night)
+    }
+
+    func testTapSession_EmptyCellOpensNearestBlock() {
+        let night = SleepSession(
+            bedInAt: date(2026, 5, 14, 3, 0),
+            bedOutAt: date(2026, 5, 14, 9, 0)      // hours 3–8
+        )
+        let nap = SleepSession(
+            bedInAt: date(2026, 5, 14, 14, 0),
+            bedOutAt: date(2026, 5, 14, 17, 0)     // hours 14–16
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let day = date(2026, 5, 14, 0)
+        let sessions = [night, nap]
+
+        XCTAssertIdentical(calc.session(forDay: day, hour: 10, sessions: sessions), night)
+        XCTAssertIdentical(calc.session(forDay: day, hour: 13, sessions: sessions), nap)
+        XCTAssertIdentical(calc.session(forDay: day, hour: 20, sessions: sessions), nap)
+    }
+
+    func testTapSession_LastNightAndTonightOnSameRow() {
+        // The 5/14 row shows last night's sleep in the morning and tonight's
+        // bed-in at 23:00. Each block opens its own session; a tap outside
+        // the grid opens the earliest one.
+        let lastNight = SleepSession(
+            bedInAt: date(2026, 5, 13, 23, 0),
+            bedOutAt: date(2026, 5, 14, 7, 0)
+        )
+        let tonight = SleepSession(
+            bedInAt: date(2026, 5, 14, 23, 0),
+            bedOutAt: date(2026, 5, 15, 7, 0)
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let day = date(2026, 5, 14, 0)
+        let sessions = [tonight, lastNight]
+
+        XCTAssertIdentical(calc.session(forDay: day, hour: 5, sessions: sessions), lastNight)
+        XCTAssertIdentical(calc.session(forDay: day, hour: 23, sessions: sessions), tonight)
+        XCTAssertIdentical(calc.session(forDay: day, hour: nil, sessions: sessions), lastNight)
+        // An overnight session also opens from its bed-in day's row.
+        XCTAssertIdentical(
+            calc.session(forDay: date(2026, 5, 13, 0), hour: 23, sessions: sessions),
+            lastNight
+        )
+    }
+
+    func testTapSession_SharedCellPrefersSmallerBlock() {
+        // Back in bed five minutes after getting up: both sessions touch hour
+        // 11. It is the nap's only cell, so the nap wins there; the morning
+        // session is still reachable through hours 9–10.
+        let morning = SleepSession(
+            bedInAt: date(2026, 5, 14, 9, 0),
+            bedOutAt: date(2026, 5, 14, 11, 5)     // hours 9–11
+        )
+        let nap = SleepSession(
+            bedInAt: date(2026, 5, 14, 11, 10),
+            bedOutAt: date(2026, 5, 14, 11, 50)    // hour 11
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let day = date(2026, 5, 14, 0)
+        let sessions = [morning, nap]
+
+        XCTAssertIdentical(calc.session(forDay: day, hour: 11, sessions: sessions), nap)
+        XCTAssertIdentical(calc.session(forDay: day, hour: 10, sessions: sessions), morning)
+    }
+
+    func testTapSession_NilWhenNothingDrawnThatDay() {
+        let s = SleepSession(
+            bedInAt: date(2026, 5, 4, 23, 0),
+            bedOutAt: date(2026, 5, 5, 7, 0)
+        )
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let day = date(2026, 5, 6, 0)
+
+        XCTAssertNil(calc.session(forDay: day, hour: 3, sessions: [s]))
+        XCTAssertNil(calc.session(forDay: day, hour: nil, sessions: [s]))
+        XCTAssertNil(calc.session(forDay: day, hour: 3, sessions: []))
+    }
+
+    func testTapSession_InProgressSessionNotOnFutureDays() {
+        // Matches the drawing: an open session is capped at `now`, so later
+        // rows stay empty and open a new record instead.
+        let s = SleepSession(bedInAt: date(2026, 5, 13, 23, 30))
+        let calc = ChartCellCalculator(calendar: cal, timeZone: tz)
+        let now = date(2026, 5, 14, 2, 0)
+
+        XCTAssertIdentical(
+            calc.session(forDay: date(2026, 5, 14, 0), hour: 1, sessions: [s], now: now),
+            s
+        )
+        XCTAssertNil(calc.session(forDay: date(2026, 5, 15, 0), hour: 1, sessions: [s], now: now))
+    }
 }

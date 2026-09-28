@@ -90,6 +90,36 @@ struct ChartCellCalculator {
         return cells
     }
 
+    /// The session a tap on `day`'s row should open, or nil when nothing is
+    /// drawn that day (the caller then starts a new record). A day can show
+    /// several sessions, so `hour` (the tapped cell) picks the nearest drawn
+    /// block, judged by `cells(forDay:)` so whatever is drawn is tappable. If
+    /// blocks share that cell, the one spanning fewer hours wins — the other
+    /// stays reachable through its remaining cells. A nil `hour` (date label /
+    /// notes column) opens the day's earliest session.
+    func session(
+        forDay day: Date,
+        hour: Int?,
+        sessions: [SleepSession],
+        now: Date = .now
+    ) -> SleepSession? {
+        var drawn: [(session: SleepSession, hours: [Int])] = []
+        for session in sessions.sorted(by: { $0.bedInAt < $1.bedInAt }) {
+            let sessionCells = cells(forDay: day, sessions: [session], now: now)
+            let hours = sessionCells.indices.filter { sessionCells[$0] != .empty }
+            if !hours.isEmpty { drawn.append((session: session, hours: hours)) }
+        }
+        guard let hour else { return drawn.first?.session }
+
+        func distance(_ hours: [Int]) -> Int {
+            hours.map { abs($0 - hour) }.min() ?? .max
+        }
+        return drawn.min { a, b in
+            let da = distance(a.hours), db = distance(b.hours)
+            return da != db ? da < db : a.hours.count < b.hours.count
+        }?.session
+    }
+
     private func rangesOverlap(_ a: Range<Date>, _ b: Range<Date>) -> Bool {
         a.lowerBound < b.upperBound && b.lowerBound < a.upperBound
     }
