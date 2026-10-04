@@ -4,16 +4,17 @@ import SwiftData
 struct DayEditSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
-    @Query private var allSessions: [SleepSession]
 
     let date: Date
+    /// The session to edit (a day can hold several); nil creates a new record
+    /// for `date`.
+    let existing: SleepSession?
 
     @State private var bedInAt: Date = .now
     @State private var bedOutAt: Date = .now
     @State private var asleepAt: Date = .now
     @State private var awakeAt: Date = .now
     @State private var notes: String = ""
-    @State private var existing: SleepSession?
 
     private var calendar: Calendar { .current }
 
@@ -100,23 +101,14 @@ struct DayEditSheet: View {
     }
 
     private func load() {
-        let dayStart = calendar.startOfDay(for: date)
-        guard let dayEnd = calendar.date(byAdding: .day, value: 1, to: dayStart) else { return }
-
-        let match = allSessions.first { s in
-            let bedEnd = s.bedOutAt ?? dayEnd
-            guard s.bedInAt < bedEnd else { return false }
-            return s.bedInAt < dayEnd && bedEnd > dayStart
-        }
-        existing = match
-
-        if let s = match {
+        if let s = existing {
             bedInAt = s.bedInAt
             bedOutAt = s.bedOutAt ?? s.bedInAt
             asleepAt = s.asleepAt ?? s.bedInAt
             awakeAt = s.awakeAt ?? s.bedOutAt ?? s.bedInAt
             notes = s.notes
         } else {
+            let dayStart = calendar.startOfDay(for: date)
             let yesterday = calendar.date(byAdding: .day, value: -1, to: dayStart) ?? dayStart
             bedInAt = calendar.date(bySettingHour: 23, minute: 0, second: 0, of: yesterday) ?? dayStart
             asleepAt = calendar.date(bySettingHour: 23, minute: 30, second: 0, of: yesterday) ?? dayStart

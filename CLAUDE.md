@@ -20,7 +20,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-**Run all tests (current pass: 34/34 in ~0.05s):**
+**Run all tests (current pass: 73/73 in ~0.1s):**
 ```bash
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
   /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild \
@@ -63,7 +63,7 @@ Useful when iterating on a single file — much faster than xcodebuild.
 - **Services/** — Pure logic, no SwiftUI dependencies:
   - `DataStore` — singleton `ModelContainer`. Checks `FileManager.ubiquityIdentityToken` first; only attempts CloudKit when iCloud is signed in (otherwise CloudKit framework hard-traps with `brk #1` from `NSCloudKitMirroringDelegate`). Falls back through CloudKit → local-on-disk → in-memory. The local fallback uses a separately-named configuration ("Local") so it never collides with a partially-initialized "Cloud" store. Test/debug helper: `DataStore.inMemory()`.
   - `SleepStateMachine` — enum with four states (`.empty`, `.inBed`, `.correctionPending`, `.completed`) computed from the active session.
-  - `ChartCellCalculator` — projects `[SleepSession]` onto a 24-cell grid per calendar day using "any-overlap = mark cell" rule. Defensively skips sessions where `bedInAt >= bedEnd` or `asleepAt >= awakeAt` (Swift's `Range` traps if `lower > upper`).
+  - `ChartCellCalculator` — projects `[SleepSession]` onto a 24-cell grid per calendar day using "any-overlap = mark cell" rule. Defensively skips sessions where `bedInAt >= bedEnd` or `asleepAt >= awakeAt` (Swift's `Range` traps if `lower > upper`). `session(forDay:hour:sessions:)` is the inverse used by chart taps: it maps the tapped hour cell to the session drawn nearest to it, so each block on a multi-session day (night + nap) opens its own `DayEditSheet`. The static `hour(atX:gridWidth:)` is the step before it: it turns a tap's x into that hour cell, or nil outside the grid, so an overshoot into the date or notes column acts like a label tap instead of clamping to hour 0 or 23.
   - `BackfillDetector` — when "おはよう" is tapped without an active session, suggests previous-day 23:00 as default `bedInAt`.
   - `SleepRecordValidator` — pure function that enforces `bedInAt < bedOutAt` and `bedInAt ≤ asleepAt ≤ awakeAt ≤ bedOutAt`. Returns `Issue?` and a Japanese localized message. Used by both `DayEditSheet` and `MorningCorrectionSheet` to disable Save and show inline error.
   - `NotificationScheduler` — `UNUserNotificationCenter` wrapper for the daily bedtime reminder.
