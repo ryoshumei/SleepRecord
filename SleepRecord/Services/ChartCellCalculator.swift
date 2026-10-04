@@ -90,6 +90,19 @@ struct ChartCellCalculator {
         return cells
     }
 
+    /// The hour cell (0..<24) a tap at `x` falls in, with `x` measured from the
+    /// left edge of the 24-cell grid, which is `gridWidth` points wide. Nil when
+    /// the tap is outside the grid (and for a grid with no width). SwiftUI still
+    /// delivers touches that overshoot the grid slightly to the grid's own tap
+    /// gesture; those should act like a tap on the date label or notes column
+    /// (the day's earliest session), not clamp to hour 0 or 23 and open that
+    /// block.
+    static func hour(atX x: CGFloat, gridWidth: CGFloat) -> Int? {
+        guard x >= 0, x < gridWidth else { return nil }
+        // Rounding can lift x / cellWidth to exactly 24 just inside the right edge.
+        return min(23, Int(x / (gridWidth / 24)))
+    }
+
     /// The session a tap on `day`'s row should open, or nil when nothing is
     /// drawn that day (the caller then starts a new record). A day can show
     /// several sessions, so `hour` (the tapped cell) picks the nearest drawn

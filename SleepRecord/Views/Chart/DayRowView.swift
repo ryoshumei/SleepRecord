@@ -36,8 +36,10 @@ struct DayRowView: View {
                 .contentShape(Rectangle())
                 .onTapGesture { location in
                     // Report which hour was tapped so a day with several
-                    // sleep blocks opens the block under the finger.
-                    onTap(w > 0 ? min(23, max(0, Int(location.x / w))) : nil)
+                    // sleep blocks opens the block under the finger. A touch
+                    // that overshoots the grid has no hour (nil) and acts like
+                    // a tap on the date label or notes column.
+                    onTap(ChartCellCalculator.hour(atX: location.x, gridWidth: geo.size.width))
                 }
             }
             .frame(height: rowHeight)

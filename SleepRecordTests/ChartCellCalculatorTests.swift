@@ -404,4 +404,62 @@ final class ChartCellCalculatorTests: XCTestCase {
         )
         XCTAssertNil(calc.session(forDay: date(2026, 5, 15, 0), hour: 1, sessions: [s], now: now))
     }
+
+    // MARK: hour(atX:gridWidth:) — which hour cell a tap on the grid lands in
+
+    func testHourAtX_MapsTapsToTheirCell() {
+        // 24 cells across a 240pt grid, so each cell is 10pt wide. A cell owns
+        // its left edge: x = 10 is hour 1, not hour 0.
+        let w: CGFloat = 240
+        XCTAssertEqual(ChartCellCalculator.hour(atX: 0, gridWidth: w), 0)
+        XCTAssertEqual(ChartCellCalculator.hour(atX: 9.9, gridWidth: w), 0)
+        XCTAssertEqual(ChartCellCalculator.hour(atX: 10, gridWidth: w), 1)
+        XCTAssertEqual(ChartCellCalculator.hour(atX: 125, gridWidth: w), 12)
+        XCTAssertEqual(ChartCellCalculator.hour(atX: 239.9, gridWidth: w), 23)
+        for k in 0..<24 {
+            XCTAssertEqual(
+                ChartCellCalculator.hour(atX: CGFloat(k) * 10, gridWidth: w), k,
+                "the left edge of cell \(k) belongs to cell \(k)"
+            )
+        }
+    }
+
+    func testHourAtX_BeyondRightEdgeIsNil() {
+        // Regression: SwiftUI hands a touch that lands just outside the grid to
+        // the grid's own tap gesture, so a tap in the first ~15pt of the notes
+        // column arrived here and was clamped to hour 23, opening the evening
+        // block instead of acting like a tap on the notes.
+        let w: CGFloat = 240
+        XCTAssertNil(ChartCellCalculator.hour(atX: w, gridWidth: w))         // the grid ends here
+        XCTAssertNil(ChartCellCalculator.hour(atX: w + 15, gridWidth: w))    // overshoot into the notes column
+        XCTAssertNil(ChartCellCalculator.hour(atX: w + 1000, gridWidth: w))
+    }
+
+    func testHourAtX_LeftOfGridIsNil() {
+        // The same overshoot on the other side: a touch on the date label's
+        // right edge was clamped to hour 0.
+        let w: CGFloat = 240
+        XCTAssertNil(ChartCellCalculator.hour(atX: -0.01, gridWidth: w))
+        XCTAssertNil(ChartCellCalculator.hour(atX: -15, gridWidth: w))
+    }
+
+    func testHourAtX_JustInsideRightEdgeIsLastHour() {
+        // For many grid widths x / cellWidth rounds up to exactly 24.0 when x
+        // is the last representable value inside the grid (250pt, about what a
+        // phone's grid measures, is one). That point is still the last cell,
+        // not one past it.
+        for w: CGFloat in [240, 250, 253, 256] {
+            XCTAssertEqual(
+                ChartCellCalculator.hour(atX: w.nextDown, gridWidth: w), 23,
+                "just inside the right edge of a \(w)pt grid"
+            )
+        }
+    }
+
+    func testHourAtX_GridWithNoWidthIsNil() {
+        // No width, no cells (and nothing to divide by).
+        XCTAssertNil(ChartCellCalculator.hour(atX: 0, gridWidth: 0))
+        XCTAssertNil(ChartCellCalculator.hour(atX: 5, gridWidth: 0))
+        XCTAssertNil(ChartCellCalculator.hour(atX: 0, gridWidth: -240))
+    }
 }
