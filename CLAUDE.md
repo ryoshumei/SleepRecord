@@ -20,7 +20,7 @@ DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-**Run all tests (current pass: 34/34 in ~0.05s):**
+**Run all tests (current pass: 68/68 in ~0.13s):**
 ```bash
 DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer \
   /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild \
